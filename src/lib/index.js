@@ -1,6 +1,6 @@
-// aqui exportaras las funciones que necesites
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from "../firebase";
 
-export const myFunction = () => {
-  // aqui tu codigo
-  console.log('Hola mundo!');
-};
+export const auth = getAuth();
+createUserWithEmailAndPassword(auth, email, password)
+
