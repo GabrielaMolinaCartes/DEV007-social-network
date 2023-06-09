@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from "../firebase";
+import { auth } from '../firebase';
 
-export const auth = getAuth();
-createUserWithEmailAndPassword(auth, email, password)
-
+export const crearUsuarioConCorreoYContraseña = (email, contraseña) => {
+  return createUserWithEmailAndPassword(auth, email, contraseña)
+};
