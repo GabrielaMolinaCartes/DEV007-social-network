@@ -1,28 +1,35 @@
+import { crearUsuarioConCorreoYContraseña } from '../lib';
+
 export const Login = (onNavigate) => {
   const HomeDiv = document.createElement('div');
-  HomeDiv.textContent = 'Bienvenido al Login';
-  HomeDiv.className = 'home-div';
-  const buttonHome = document.createElement('button');
+  const buttonLogin = document.createElement('button');
+  const buttonRegister = document.createElement('button');
 
-  buttonHome.classList = 'home-div__button';
-  buttonHome.textContent = 'Regresar al Home';
+  buttonLogin.textContent = 'Iniciar Sesión';
+  buttonRegister.textContent = 'Registrarse';
 
-  buttonHome.addEventListener('click', () => onNavigate('/'));
+  buttonLogin.addEventListener('click', (e) => {
+    e.preventDefault();
+    onNavigate('/home');
+  });
 
   HomeDiv.innerHTML += `
-  <div class="new-post__container">
-  <textarea class="new-post__container__textarea"></textarea>
-  <button class="new-post__container__button">PUBLICAR</button>
-  </div>
-  <section class="posts">
-  <div class="posts__post">
-  <p>Este Monumento Nacional es muy bello y tiene grandes áreas verdes</p>
-  <h6>Juanita Pérez</h6>
-  </div>
-  </section>
-  `;
+    <input id="input-email" placeholder="Ingrese correo" type="email">
+    <input id="input-password" placeholder="Ingrese contraseña" type="password">
+    `;
 
-  HomeDiv.appendChild(buttonHome);
+  const inputEmail = HomeDiv.querySelector('#input-email');
+  const inputPassword = HomeDiv.querySelector('#input-password');
+
+  buttonRegister.addEventListener('click', (e) => {
+    e.preventDefault();
+    crearUsuarioConCorreoYContraseña(inputEmail.value, inputPassword.value).then(() => {
+      onNavigate('/register');
+    });
+  });
+
+  HomeDiv.appendChild(buttonRegister);
+  HomeDiv.appendChild(buttonLogin);
 
   return HomeDiv;
 };

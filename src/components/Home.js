@@ -1,35 +1,38 @@
-import { crearUsuarioConCorreoYContraseña } from '../lib';
+import { crearPost } from '../lib';
 
 export const Home = (onNavigate) => {
   const HomeDiv = document.createElement('div');
-  const buttonRegister = document.createElement('button');
-  const buttonLogin = document.createElement('button');
+  HomeDiv.textContent = 'Bienvenido a Monutrip';
+  HomeDiv.className = 'home-div';
+  const buttonHome = document.createElement('button');
 
-  buttonRegister.textContent = 'Registrarse';
-  buttonLogin.textContent = 'Iniciar Sesión';
+  buttonHome.classList = 'home-div__button';
+  buttonHome.textContent = 'Regresar al Home';
 
-  buttonRegister.addEventListener('click', (e) => {
-    e.preventDefault();
-    onNavigate('/register');
-  });
+  buttonHome.addEventListener('click', () => onNavigate('/'));
 
   HomeDiv.innerHTML += `
-    <input id="input-email" placeholder="Ingrese correo" type="email">
-    <input id="input-password" placeholder="Ingrese contraseña" type="password">
-    `;
+  <div class="new-post__container">
+  <textarea class="new-post__container__textarea"></textarea>
+  <button class="new-post__container__button">PUBLICAR</button>
+  </div>
+  <section class="posts">
+  <div class="posts__post">
+  <p>Este Monumento Nacional es muy bello y tiene grandes áreas verdes</p>
+  <h6>Juanita Pérez</h6>
+  </div>
+  </section>
+  `;
 
-  const inputEmail = HomeDiv.querySelector('#input-email');
-  const inputPassword = HomeDiv.querySelector('#input-password');
-
-  buttonLogin.addEventListener('click', (e) => {
-    e.preventDefault();
-    crearUsuarioConCorreoYContraseña(inputEmail.value, inputPassword.value).then(() => {
-      onNavigate('/login');
+  HomeDiv.querySelector('.new-post__container__button').addEventListener('click', () => {
+    const contenidoDelTextarea = HomeDiv.querySelector('.new-post__container__textarea');
+    crearPost(contenidoDelTextarea.value).then(() => {
+    }).catch((err) => {
+      console.log(err);
     });
   });
 
-  HomeDiv.appendChild(buttonRegister);
-  HomeDiv.appendChild(buttonLogin);
+  HomeDiv.appendChild(buttonHome);
 
   return HomeDiv;
 };

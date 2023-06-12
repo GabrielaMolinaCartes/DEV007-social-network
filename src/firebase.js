@@ -20,5 +20,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 // Conecta con authentication
 export const auth = getAuth(app);
-//conecta con firestore
+// Conecta con firestore
 export const db = getFirestore(app);

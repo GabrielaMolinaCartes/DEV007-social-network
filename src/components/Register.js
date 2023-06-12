@@ -1,11 +1,11 @@
 export const Register = (onNavigate) => {
   const HomeDiv = document.createElement('div');
-  HomeDiv.textContent = 'Bienvenido al registro';
+  HomeDiv.textContent = 'Bienvenido al Registro';
   const buttonHome = document.createElement('button');
 
-  buttonHome.textContent = 'Regresar al Home';
+  buttonHome.textContent = 'Aceptar Registrp';
 
-  buttonHome.addEventListener('click', () => onNavigate('/'));
+  buttonHome.addEventListener('click', () => onNavigate('/home'));
 
   HomeDiv.appendChild(buttonHome);
 
