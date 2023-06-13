@@ -1,15 +1,15 @@
-import { crearPost } from '../lib';
+import { crearPost } from "../lib";
 
 export const Home = (onNavigate) => {
-  const HomeDiv = document.createElement('div');
-  HomeDiv.textContent = 'Bienvenido a Monutrip';
-  HomeDiv.className = 'home-div';
-  const buttonHome = document.createElement('button');
+  const HomeDiv = document.createElement("div");
+  HomeDiv.textContent = "Bienvenido a Monutrip";
+  HomeDiv.className = "home-div";
+  const buttonHome = document.createElement("button");
 
-  buttonHome.classList = 'home-div__button';
-  buttonHome.textContent = 'Regresar al Home';
+  buttonHome.classList = "home-div__button";
+  buttonHome.textContent = "Regresar al Login";
 
-  buttonHome.addEventListener('click', () => onNavigate('/'));
+  buttonHome.addEventListener("click", () => onNavigate("/"));
 
   HomeDiv.innerHTML += `
   <div class="new-post__container">
@@ -24,13 +24,19 @@ export const Home = (onNavigate) => {
   </section>
   `;
 
-  HomeDiv.querySelector('.new-post__container__button').addEventListener('click', () => {
-    const contenidoDelTextarea = HomeDiv.querySelector('.new-post__container__textarea');
-    crearPost(contenidoDelTextarea.value).then(() => {
-    }).catch((err) => {
-      console.log(err);
-    });
-  });
+  HomeDiv.querySelector(".new-post__container__button").addEventListener(
+    "click",
+    () => {
+      const contenidoDelTextarea = HomeDiv.querySelector(
+        ".new-post__container__textarea"
+      );
+      crearPost(contenidoDelTextarea.value)
+        .then(() => {})
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  );
 
   HomeDiv.appendChild(buttonHome);
 
