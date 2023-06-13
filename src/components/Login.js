@@ -1,31 +1,37 @@
 import { ingresarUsuarioConCorreoYContraseña } from "../lib/index";
 
 export const Login = (onNavigate) => {
+  const logoDiv = document.createElement("div");
+  const logoImg = document.createElement("img");
+
   const HomeDiv = document.createElement("div");
   const loginDiv = document.createElement("div");
+  const inputEmail = document.createElement("input");
+  const inputPassword = document.createElement("input");
   const buttonLogin = document.createElement("button");
   const buttonRegister = document.createElement("button");
-  const containerLogin = document.createElement("div");
-  const logo = document.createElement("div");
 
   HomeDiv.className = "container_all";
+  logoDiv.className = "div_logo";
+  logoImg.className = "img_logo";
   loginDiv.className = "container_login";
+
+  logoImg.src = "images/MonuTrip.png";
+  inputEmail.id = "inputEmail-id";
+  inputEmail.classList.add("input_login");
+  inputEmail.placeholder = "Ingrese Correo";
+  inputPassword.classList.add("input_login");
+  inputPassword.type = "password";
+  inputPassword.id = "inputPassword-id";
+  inputPassword.placeholder = " Ingrese Contraseña";
+  inputPassword.minLength = 6;
+  inputPassword.required = true;
 
   buttonLogin.textContent = "Iniciar Sesión";
   buttonRegister.textContent = "Registrarse";
 
-  /*loginDiv.innerHTML += `
-    <div class="logo">
-      <img class="logo_imagen" src="images/MonuTrip.png" alt="logo">
-    </div>
-    <div class="container_login">
-      <input class="input_login" id="input-email" placeholder="Ingrese correo" type="email">
-      <input class="input_login" id="input-password" placeholder="Ingrese contraseña" type="password">
-    </div>
-    `;*/
-
-  const inputEmail = loginDiv.querySelector("#input-email");
-  const inputPassword = loginDiv.querySelector("#input-password");
+  buttonLogin.classList.add("login_button");
+  buttonRegister.classList.add("login_button");
 
   buttonLogin.addEventListener("click", (e) => {
     e.preventDefault();
@@ -42,13 +48,13 @@ export const Login = (onNavigate) => {
     onNavigate("/register");
   });
 
+  HomeDiv.appendChild(logoDiv);
   HomeDiv.appendChild(loginDiv);
-  loginDiv.appendChild(containerLogin);
-  loginDiv.appendChild(logo);
-  containerLogin.appendChild(inputEmail);
-  containerLogin.appendChild(inputPassword);
-  containerLogin.appendChild(buttonLogin);
-  containerLogin.appendChild(buttonRegister);
+  logoDiv.appendChild(logoImg);
+  loginDiv.appendChild(inputEmail);
+  loginDiv.appendChild(inputPassword);
+  loginDiv.appendChild(buttonLogin);
+  loginDiv.appendChild(buttonRegister);
 
   return HomeDiv;
 };

@@ -1,21 +1,42 @@
 import { crearUsuarioConCorreoYContraseña } from "../lib/index";
 
 export const Register = (onNavigate) => {
+  const logoDiv = document.createElement("div");
+  const logoImg = document.createElement("img");
+
   const HomeDiv = document.createElement("div");
-  HomeDiv.textContent = "Bienvenido al Registro";
-  const buttonHome = document.createElement("button");
+  const registerDiv = document.createElement("div");
+  const inputEmail = document.createElement("input");
+  const inputPassword = document.createElement("input");
 
-  buttonHome.textContent = "Aceptar Registro";
+  const buttonRegister = document.createElement("button");
+  const buttonBack = document.createElement("button");
 
-  HomeDiv.innerHTML += `
-    <input id="input-email" placeholder="Ingrese correo" type="email">
-    <input id="input-password" placeholder="Ingrese contraseña" type="password">
-    `;
+  HomeDiv.className = "container_all";
+  logoDiv.className = "div_logo";
+  logoImg.className = "img_logo";
+  registerDiv.className = "container_login";
 
-  const inputEmail = HomeDiv.querySelector("#input-email");
-  const inputPassword = HomeDiv.querySelector("#input-password");
+  logoImg.src = "images/MonuTrip.png";
+  inputEmail.id = "inputEmail-id";
+  inputEmail.classList.add("input_login");
+  inputEmail.placeholder = "Ingrese Correo";
+  inputPassword.classList.add("input_login");
+  inputPassword.type = "password";
+  inputPassword.id = "inputPassword-id";
+  inputPassword.placeholder = " Ingrese Contraseña";
+  inputPassword.minLength = 6;
+  inputPassword.required = true;
 
-  buttonHome.addEventListener("click", (e) => {
+  buttonRegister.textContent = "Registrarse";
+  buttonBack.textContent = "Atrás";
+
+  buttonBack.classList.add("login_button");
+  buttonRegister.classList.add("login_button");
+
+  buttonBack.addEventListener("click", () => onNavigate("/"));
+
+  buttonRegister.addEventListener("click", (e) => {
     e.preventDefault();
     crearUsuarioConCorreoYContraseña(
       inputEmail.value,
@@ -25,7 +46,13 @@ export const Register = (onNavigate) => {
     });
   });
 
-  HomeDiv.appendChild(buttonHome);
+  HomeDiv.appendChild(logoDiv);
+  HomeDiv.appendChild(registerDiv);
+  logoDiv.appendChild(logoImg);
+  registerDiv.appendChild(inputEmail);
+  registerDiv.appendChild(inputPassword);
+  registerDiv.appendChild(buttonRegister);
+  registerDiv.appendChild(buttonBack);
 
   return HomeDiv;
 };
