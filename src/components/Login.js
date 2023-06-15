@@ -1,4 +1,7 @@
-import { ingresarUsuarioConCorreoYContraseña, ingresarUsuarioConCuentaGoogle } from "../lib/index";
+import {
+  ingresarUsuarioConCorreoYContraseña,
+  ingresarUsuarioConCuentaGoogle,
+} from "../lib/index";
 
 export const Login = (onNavigate) => {
   const logoDiv = document.createElement("div");
@@ -14,7 +17,8 @@ export const Login = (onNavigate) => {
 
   const buttonLoginGoogle = document.createElement("button");
   const logoGoogleSpan = document.createElement("span");
-  const logoGoogle = document.createElement("svg");
+  const logoGoogle =
+    document.createElement("img"); /*cambie este de svg a img */
   const textGoogleSpan = document.createElement("span");
 
   HomeDiv.className = "container_all";
@@ -24,6 +28,10 @@ export const Login = (onNavigate) => {
   //googleDiv.className = "container_google";
 
   buttonLoginGoogle.className = "google-button";
+  logoGoogle.src =
+    "images/logoGoogle.svg"; /*agregue esto para ver si funciona de alguna forma */
+  logoGoogle.className =
+    "google-icon"; /*agregue esta clase para darle propiedades en css a la img */
   logoGoogleSpan.className = "google-button__icon";
   textGoogleSpan.className = "google-button__text";
 
@@ -40,11 +48,11 @@ export const Login = (onNavigate) => {
 
   buttonLogin.textContent = "Iniciar Sesión";
   buttonRegister.textContent = "Registrarse";
+
   textGoogleSpan.textContent = "Iniciar sesión con Google";
 
   buttonLogin.classList.add("login_button");
   buttonRegister.classList.add("login_button");
-
 
   buttonLogin.addEventListener("click", (e) => {
     e.preventDefault();
@@ -61,6 +69,15 @@ export const Login = (onNavigate) => {
     onNavigate("/register");
   });
 
+  //agregue esto pero me lleva al home hay q ver q lleve a la cosa de google
+  buttonLoginGoogle.addEventListener("click", (e) => {
+    e.preventDefault();
+    ingresarUsuarioConCuentaGoogle().then((result) => {
+      console.log(result);
+      onNavigate("/home");
+    });
+  });
+
   HomeDiv.appendChild(logoDiv);
   HomeDiv.appendChild(loginDiv);
   logoDiv.appendChild(logoImg);
@@ -72,7 +89,6 @@ export const Login = (onNavigate) => {
   buttonLoginGoogle.appendChild(logoGoogleSpan);
   logoGoogleSpan.appendChild(logoGoogle);
   buttonLoginGoogle.appendChild(textGoogleSpan);
-
 
   return HomeDiv;
 };
