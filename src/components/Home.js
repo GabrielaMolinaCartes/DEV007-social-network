@@ -1,4 +1,4 @@
-import { crearPost } from "../lib";
+import { crearPost } from "../lib/index.js";
 
 export const Home = (onNavigate) => {
   const logoDiv = document.createElement("div");
@@ -47,8 +47,14 @@ export const Home = (onNavigate) => {
   buttonPublish.addEventListener("click", (e) => {
     e.preventDefault();
     const contentTextarea = document.getElementById("post-textarea").value;
-    createPost(contentTextarea);
-    console.log("Se ha creado tu post");
+    crearPost(contentTextarea).then(() => {
+      alert("Hola");
+    });
+
+    //console.log(contentTextarea);
+    /*.catch((err) => {
+        console.log(err);
+      });*/
   });
 
   buttonLogout.addEventListener("click", () => onNavigate("/"));

@@ -69,11 +69,10 @@ export const Login = (onNavigate) => {
     onNavigate("/register");
   });
 
-  //agregue esto pero me lleva al home hay q ver q lleve a la cosa de google
+  //agregue esto pero me lleva al home
   buttonLoginGoogle.addEventListener("click", (e) => {
     e.preventDefault();
-    ingresarUsuarioConCuentaGoogle().then((result) => {
-      console.log(result);
+    ingresarUsuarioConCuentaGoogle().then(() => {
       onNavigate("/home");
     });
   });
