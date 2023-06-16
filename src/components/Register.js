@@ -1,41 +1,52 @@
-import { crearUsuarioConCorreoYContraseña } from "../lib/index";
+import { crearUsuarioConCorreoYContraseña, ingresarUsuarioConCuentaGoogle } from "../lib/index";
 
 export const Register = (onNavigate) => {
+//Variables de divs del DOM
+  const HomeDiv = document.createElement("div");
   const logoDiv = document.createElement("div");
   const logoImg = document.createElement("img");
-
-  const HomeDiv = document.createElement("div");
   const registerDiv = document.createElement("div");
+  //Variables de inputs y buttons
   const inputEmail = document.createElement("input");
   const inputPassword = document.createElement("input");
-
   const buttonRegister = document.createElement("button");
+  //Variables para register con google
+  const buttonRegisterGoogle = document.createElement('button');
+  const logoGoogleSpan = document.createElement('span');
+  const logoGoogle = document.createElement('img');
+  const textGoogleSpan = document.createElement('span');
+  //Variable button volver al login
   const buttonBack = document.createElement("button");
 
+  //Atributos de Variables del DOM
   HomeDiv.className = "container_all";
   logoDiv.className = "div_logo";
-  logoImg.className = "img_logo";
   registerDiv.className = "container_login";
-
+  //Atributos de imagen del título
+  logoImg.className = "img_logo";
   logoImg.src = "images/MonuTrip.png";
+  //Atributos de inputs y buttons
   inputEmail.id = "inputEmail-id";
   inputEmail.classList.add("input_login");
   inputEmail.placeholder = "Ingrese Correo";
+  inputPassword.id = "inputPassword-id";
   inputPassword.classList.add("input_login");
   inputPassword.type = "password";
-  inputPassword.id = "inputPassword-id";
   inputPassword.placeholder = " Ingrese Contraseña";
-  inputPassword.minLength = 6;
-  inputPassword.required = true;
-
+  buttonRegister.classList.add("login_button");
   buttonRegister.textContent = "Registrarse";
+  //Atributos de register con google
+  buttonRegisterGoogle.className = 'google-button';
+  logoGoogle.src = 'images/logoGoogle.svg';
+  logoGoogle.className = 'google-icon';
+  logoGoogleSpan.className = 'google-button__icon';
+  textGoogleSpan.className = 'google-button__text';
+  textGoogleSpan.textContent = 'Registrarse con Google';
+  //Atributos button volver login
+  buttonBack.classList.add("login_button");
   buttonBack.textContent = "Atrás";
 
-  buttonBack.classList.add("login_button");
-  buttonRegister.classList.add("login_button");
-
-  buttonBack.addEventListener("click", () => onNavigate("/"));
-
+  //Event Listener de botones 
   buttonRegister.addEventListener("click", (e) => {
     e.preventDefault();
     crearUsuarioConCorreoYContraseña(inputEmail.value, inputPassword.value)
@@ -56,6 +67,16 @@ export const Register = (onNavigate) => {
       });
   });
 
+  buttonRegisterGoogle.addEventListener('click', (e) => {
+    e.preventDefault();
+    ingresarUsuarioConCuentaGoogle().then(() => {
+      onNavigate('/home');
+    });
+  });
+
+  buttonBack.addEventListener("click", () => onNavigate("/"));
+
+  //Todos los Append Child 
   HomeDiv.appendChild(logoDiv);
   HomeDiv.appendChild(registerDiv);
   logoDiv.appendChild(logoImg);
@@ -63,6 +84,10 @@ export const Register = (onNavigate) => {
   registerDiv.appendChild(inputPassword);
   registerDiv.appendChild(buttonRegister);
   registerDiv.appendChild(buttonBack);
+  registerDiv.appendChild(buttonRegisterGoogle);
+  buttonRegisterGoogle.appendChild(logoGoogleSpan);
+  logoGoogleSpan.appendChild(logoGoogle);
+  buttonRegisterGoogle.appendChild(textGoogleSpan);
 
   return HomeDiv;
 };
