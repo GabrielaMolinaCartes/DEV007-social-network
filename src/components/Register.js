@@ -38,12 +38,22 @@ export const Register = (onNavigate) => {
 
   buttonRegister.addEventListener("click", (e) => {
     e.preventDefault();
-    crearUsuarioConCorreoYContraseña(
-      inputEmail.value,
-      inputPassword.value
-    ).then(() => {
-      onNavigate("/home");
-    });
+    crearUsuarioConCorreoYContraseña(inputEmail.value, inputPassword.value)
+      .then(() => {
+        onNavigate("/home");
+      })
+      .catch((err) => {
+        const errorCode = err.code;
+        if (errorCode === "auth/email-already-in-use") {
+          alert("Este correo electrónico ya esta registrado");
+        }
+        if (errorCode === "auth/invalid-email") {
+          alert("Ingrese un correo electrónico válido");
+        }
+        if (errorCode === "auth/weak-password") {
+          alert("Ingrese contraseña de al menos 6 caracteres");
+        }
+      });
   });
 
   HomeDiv.appendChild(logoDiv);
