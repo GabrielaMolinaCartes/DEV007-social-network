@@ -2,40 +2,50 @@
 import { crearPost, mostrarPost } from "../lib/index.js";
 
 export const Home = (onNavigate) => {
+  //Variables de divs del Dom
+  const HomeDiv = document.createElement("div");
   const logoDiv = document.createElement("div");
   const logoImg = document.createElement("img");
-
-  const HomeDiv = document.createElement("div");
   const postDiv = document.createElement("div");
-  const titlePostLabel = document.createElement("label"); //para darle titulo al input
-  const titlePost = document.createElement("input"); // input para escribir titulo dela publicacion
-  const postPublish = document.createElement("textarea");
-  const titlePublish = document.createElement("label"); //agregue el label para darle titulo al texarea
-  const buttonPublish = document.createElement("button");
-  const postFeedDiv = document.createElement("div");
+  //Variable de botón salir
   const buttonLogout = document.createElement("button");
+  //Variables de formulario
+  const titlePostLabel = document.createElement("label");
+  const titlePost = document.createElement("input");
+  const titlePublish = document.createElement("label");
+  const postPublish = document.createElement("textarea");
+  const buttonPublish = document.createElement("button");
+  //Variables de publicaciones creadas
+  const postFeedDiv = document.createElement("div");
 
+  //Atributos de variables DOM
   HomeDiv.className = "container_all";
   logoDiv.className = "div_logo";
+  postDiv.className = "container_login";
+  //Atributo botón salir
+  buttonLogout.className = "logout_button";
+  buttonLogout.textContent = "Cerrar sesión";
+  //Atributos de imagen del título
   logoImg.className = "img_logo";
   logoImg.src = "images/MonuTrip.png";
-  postDiv.className = "container_login";
-  titlePostLabel.className = "title_post_label"; //el label
-  titlePost.className = "title_post"; //el titulo del post
+  //Atributos de formulario
+  titlePostLabel.className = "title_post_label";
+  titlePostLabel.textContent = "Escribe titulo al post";
   titlePost.id = "id_title_post";
-  titlePublish.className = "title_publish"; //clase del titulo post
+  titlePost.className = "title_post"; 
+  titlePublish.className = "title_publish";
+  titlePublish.textContent = "Escribe un Post";
+  postPublish.id = "post-textarea";
   postPublish.className = "post_textarea";
   postPublish.placeholder = "Comparte tu experiencia....";
-  postPublish.id = "post-textarea";
-  postPublish.rows = "4"; //para q sean 4 lineas
+  postPublish.rows = "4"; //para que sean 4 lineas
   buttonPublish.className = "publish_button";
-  postFeedDiv.id = "post-feed";
-  buttonLogout.className = "logout_button";
-
-  titlePostLabel.textContent = "Escribe titulo al post"; //agregue el titulo del post
-  titlePublish.textContent = "Escribe un Post"; //agregue el titulo de donde se escribe el post
   buttonPublish.textContent = "Publicar";
-  buttonLogout.textContent = "Cerrar sesión";
+  //Atributos de publicaciones creadas
+  postFeedDiv.id = "post-feed";
+
+  //Event Listener de botones 
+  buttonLogout.addEventListener("click", () => onNavigate("/"));
 
   buttonPublish.addEventListener("click", (e) => {
     e.preventDefault();
@@ -48,10 +58,8 @@ export const Home = (onNavigate) => {
 
   const contentFeed = document.getElementById("post-feed");
 
-  window.addEventListener("DOMContentLoaded", async () => {
-    const querySnapshot = await mostrarPost();
-
-    let html = "";
+  mostrarPost((querySnapshot) => {
+    let html = '';
     querySnapshot.forEach((doc) => {
       const publicacion = doc.data();
       html += `
@@ -61,11 +69,11 @@ export const Home = (onNavigate) => {
       </div>
       `;
     });
-    contentFeed.innerHTML = html;
+
+    postFeedDiv.innerHTML = html;
   });
 
-  buttonLogout.addEventListener("click", () => onNavigate("/"));
-
+  //Todos los Append Child 
   HomeDiv.appendChild(logoDiv);
   HomeDiv.appendChild(postDiv);
   HomeDiv.appendChild(postFeedDiv);

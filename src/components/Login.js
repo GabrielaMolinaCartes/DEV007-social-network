@@ -9,10 +9,12 @@ export const Login = (onNavigate) => {
   const logoDiv = document.createElement('div');
   const logoImg = document.createElement('img');
   const loginDiv = document.createElement('div');
+  const registerContainer = document.createElement('section');
   //Variables de inputs y buttons
   const inputEmail = document.createElement('input');
   const inputPassword = document.createElement('input');
   const buttonLogin = document.createElement('button');
+  const titleRegister = document.createElement('p');
   const buttonRegister = document.createElement('button');
   //Variables para login con google
   const buttonLoginGoogle = document.createElement('button');
@@ -20,10 +22,11 @@ export const Login = (onNavigate) => {
   const logoGoogle = document.createElement('img');
   const textGoogleSpan = document.createElement('span');
 
-  //Atributos de Variables Dom
+  //Atributos de Variables DOM
   HomeDiv.className = 'container_all';
   logoDiv.className = 'div_logo';
   loginDiv.className = 'container_login';
+  registerContainer.className = 'container_register';
   //Atributos de imagen del título
   logoImg.className = 'img_logo';
   logoImg.src = 'images/MonuTrip.png';
@@ -37,8 +40,10 @@ export const Login = (onNavigate) => {
   inputPassword.placeholder = ' Ingrese Contraseña';
   buttonLogin.classList.add('login_button');
   buttonLogin.textContent = 'Iniciar Sesión';
+  titleRegister.className = ('register_title');
+  titleRegister.textContent = '¿No tienes cuenta?';
   buttonRegister.classList.add('login_button');
-  buttonRegister.textContent = 'Registrarse';
+  buttonRegister.textContent = 'Registrate Aquí';
   //Atributos de login con google
   buttonLoginGoogle.className = 'google-button';
   logoGoogle.src = 'images/logoGoogle.svg';
@@ -90,8 +95,10 @@ export const Login = (onNavigate) => {
   loginDiv.appendChild(inputEmail);
   loginDiv.appendChild(inputPassword);
   loginDiv.appendChild(buttonLogin);
-  loginDiv.appendChild(buttonRegister);
   loginDiv.appendChild(buttonLoginGoogle);
+  loginDiv.appendChild(registerContainer);
+  registerContainer.appendChild(titleRegister);
+  registerContainer.appendChild(buttonRegister);
   buttonLoginGoogle.appendChild(logoGoogleSpan);
   logoGoogleSpan.appendChild(logoGoogle);
   buttonLoginGoogle.appendChild(textGoogleSpan);

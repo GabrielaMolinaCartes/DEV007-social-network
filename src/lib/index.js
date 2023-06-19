@@ -4,7 +4,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from "firebase/auth";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, onSnapshot } from "firebase/firestore";
 import { auth, db } from "../firebase";
 
 export const crearUsuarioConCorreoYContraseña = (email, contraseña) => {
@@ -20,7 +20,11 @@ export const ingresarUsuarioConCuentaGoogle = () => {
   return signInWithPopup(auth, provider);
 };
 
-export const crearPost = (titulo, contenido) =>
-  addDoc(collection(db, "publicaciones"), { titulo, contenido });
+export const crearPost = async (title, text) => {
+  const createPost = await addDoc(collection(db, "publicaciones"), {
+    titulo: title,
+    contenido: text,
+  });
+};
 
-export const mostrarPost = () => getDocs(collection(db, "publicaciones"));
+export const mostrarPost = (callback) => onSnapshot(collection(db, "publicaciones"), callback);
