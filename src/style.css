@@ -1,7 +1,3 @@
-$white: #fff;
-$google-blue: #4285f4;
-$button-active-blue: #1669f2;
-
 /*@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;400&display=swap');*/
 
 * {
@@ -14,6 +10,8 @@ body {
   background-image: url(images/imagenfondo.png);
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 .div_logo {
@@ -27,7 +25,7 @@ body {
 }
 
 .container_all {
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -37,39 +35,51 @@ body {
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-  margin: 30px 80px;
-  width: 300px;
-  height: 400px;
-  background: rgb(155,185,187);
-  background: radial-gradient(circle, rgba(155,185,187,0.8463760504201681) 0%, rgba(180,218,219,0.8743872549019608) 100%);
+  margin: 10px 80px;
+  width: 20rem;
+  height: 450px;
+  background: rgb(155, 185, 187);
+  background: radial-gradient(
+    circle,
+    rgba(155, 185, 187, 0.8463760504201681) 0%,
+    rgba(180, 218, 219, 0.8743872549019608) 100%
+  );
   border: 1px solid #bbb7b7;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 50px;
+  border-radius: 10px;
   padding: 50px 0 30px 0;
   gap: 30px;
-  font-family: 'Titillium Web', sans-serif;
+  font-family: "Titillium Web", sans-serif;
 }
 
 .input_login {
   border-radius: 10px;
   border: 0.5px solid #bbb7b7;
-  padding: 7px;
-  font-family: 'Titillium Web', sans-serif;
+  padding: 8px;
+  width: 215px;
+  font-family: "Titillium Web", sans-serif;
 }
 
 .login_button {
-  width: 150px;
-  height: 30px;
+  width: 205px;
+  height: 40px;
   background: #cbae9e;
   border: 1px solid #bbb7b7;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
+  border-radius: 5px;
   cursor: pointer;
-  font-family: inherit;
+  font-weight: bold;
+  font-size: 0.8rem;
 }
 
-.login_button:hover{
-  background-color: #FAEAD1;
+.login_button:hover {
+  background-color: #faead1;
+}
+
+.line_hr {
+  height: 3px;
+  width: 60%;
+  background-color: black;
 }
 
 .google-button {
@@ -77,14 +87,18 @@ body {
   border-width: 0;
   background: white;
   color: #737373;
-  border-radius: 15px;
+  border-radius: 10px;
   white-space: nowrap;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
   transition-property: background-color, box-shadow;
   transition-duration: 150ms;
   transition-timing-function: ease-in-out;
   padding: 0;
-  cursor: pointer; 
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.01);
+  }
 
   &:active {
     background-color: #e5e5e5;
@@ -122,12 +136,47 @@ body {
   height: 18px;
 }
 
-.container_register{
-text-align: center;
+.container_register {
+  text-align: center;
+  display: flex;
+  gap: 5px;
 }
 
-.register_title{
+.register_title {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
 
+.register_button {
+  border: none;
+  background-color: transparent;
+
+  font-weight: bold;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.register_button:hover {
+  text-decoration: solid;
+  transform: scale(1.05);
+  /*background-color: #cbae9e;*/
+  text-decoration: underline;
+}
+/*Button volver atras, página rgister*/
+.back_button {
+  width: 5rem;
+  height: 25px;
+  background: #cbae9e;
+  border: 1px solid #bbb7b7;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.back_button:hover {
+  background-color: #faead1;
 }
 
 .publish_button {
@@ -148,4 +197,25 @@ text-align: center;
   border: 1px solid #bbb7b7;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
+}
+
+/*HOME*/
+.container_feed_post {
+  border: 1px solid #bbb7b7;
+  padding: 4rem 15rem;
+  background: rgb(155, 185, 187);
+  background: radial-gradient(
+    circle,
+    rgba(155, 185, 187, 0.8463760504201681) 0%,
+    rgba(180, 218, 219, 0.8743872549019608) 100%
+  );
+  border-radius: 5px;
+}
+
+.button_feed_container {
+  display: flex;
+  justify-content: end;
+}
+
+.button_feed {
 }

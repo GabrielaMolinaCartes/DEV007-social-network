@@ -4,7 +4,13 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from "firebase/auth";
-import { addDoc, collection, onSnapshot } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  onSnapshot,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 import { auth, db } from "../firebase";
 
 export const crearUsuarioConCorreoYContraseña = (email, contraseña) => {
@@ -27,4 +33,11 @@ export const crearPost = async (title, text) => {
   });
 };
 
-export const mostrarPost = (callback) => onSnapshot(collection(db, "publicaciones"), callback);
+export const mostrarPost = (callback) =>
+  onSnapshot(collection(db, "publicaciones"), callback);
+
+export const borrarPost = (id) => deleteDoc(doc(db, "publicaciones", id));
+
+//1:00:22 duda porque usa getTask //llegue al 1:02:58
+
+//export const getTask = (id) => getDoc(doc(db, "publicaciones", id));

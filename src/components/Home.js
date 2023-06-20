@@ -1,5 +1,5 @@
 //import { async } from "regenerator-runtime";
-import { crearPost, mostrarPost } from "../lib/index.js";
+import { crearPost, mostrarPost, borrarPost } from "../lib/index.js";
 
 export const Home = (onNavigate) => {
   //Variables de divs del Dom
@@ -32,7 +32,7 @@ export const Home = (onNavigate) => {
   titlePostLabel.className = "title_post_label";
   titlePostLabel.textContent = "Escribe titulo al post";
   titlePost.id = "id_title_post";
-  titlePost.className = "title_post"; 
+  titlePost.className = "title_post";
   titlePublish.className = "title_publish";
   titlePublish.textContent = "Escribe un Post";
   postPublish.id = "post-textarea";
@@ -44,7 +44,7 @@ export const Home = (onNavigate) => {
   //Atributos de publicaciones creadas
   postFeedDiv.id = "post-feed";
 
-  //Event Listener de botones 
+  //Event Listener de botones
   buttonLogout.addEventListener("click", () => onNavigate("/"));
 
   buttonPublish.addEventListener("click", (e) => {
@@ -59,21 +59,51 @@ export const Home = (onNavigate) => {
   const contentFeed = document.getElementById("post-feed");
 
   mostrarPost((querySnapshot) => {
-    let html = '';
+    let html = "";
     querySnapshot.forEach((doc) => {
       const publicacion = doc.data();
       html += `
-      <div>
+      <div class="container_feed_post">
         <h3>${publicacion.titulo}</h3>
         <p>${publicacion.contenido}</p>
+        <div class="button_feed_container">
+        <button class="button_edit" data-id="${doc.id}" >Editar</button>
+          <button class="button_delate" data-id="${doc.id}" >Borrar</button>
+        </div>
       </div>
       `;
+
+      limpiarInput(); //limpia el input
+      limpiarTextarea(); //limpia textarea
     });
 
     postFeedDiv.innerHTML = html;
+
+    //limpia input y textarea
+    function limpiarInput() {
+      document.getElementById("id_title_post").value = "";
+    }
+
+    function limpiarTextarea() {
+      document.getElementById("post-textarea").value = "";
+    }
+
+    const buttonDelete = postFeedDiv.querySelectorAll(".button_delate");
+    buttonDelete.forEach((btn) => {
+      btn.addEventListener("click", ({ target: { dataset } }) => {
+        borrarPost(dataset.id);
+      });
+    });
+
+    const buttonEdit = postFeedDiv.querySelectorAll(".button_edit");
+    buttonEdit.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        console.log(e.target.dataset.id);
+      });
+    });
   });
 
-  //Todos los Append Child 
+  //Todos los Append Child
   HomeDiv.appendChild(logoDiv);
   HomeDiv.appendChild(postDiv);
   HomeDiv.appendChild(postFeedDiv);
