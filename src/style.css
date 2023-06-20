@@ -21,7 +21,7 @@ body {
 }
 
 .img_logo {
-  width: 280px;
+  width: 400px;
 }
 
 .container_all {
@@ -181,28 +181,43 @@ body {
 
 .publish_button {
   width: 150px;
-  height: 24px;
+  height: 30px;
   background: #cbae9e;
-  border: 1px solid #bbb7b7;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
+  border: 1px solid #aea9a9;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin-top: 20px; /*agregue para darle separacion*/
+  border-radius: 3px;
+  margin-left: 20px;
+  font-size: 22px;
+}
+
+.publish_button:hover {
+  background-color: #faead1;
+  transition-duration: 10ms;
+  cursor: pointer;
+}
+
+.img_logout{
+  height: 80px;
 }
 
 .logout_button {
-  width: 80px;
-  height: 40px;
-  margin-left: 10px;
-  background: #cbae9e;
-  border: 1px solid #bbb7b7;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
+  background: transparent;
+  border: none;
+  margin: 0 0 140px 300px;
 }
 
 /*HOME*/
-.container_feed_post {
+.section_post {
+  height: 800px;
+  width: 800px;
+  font-family: "Titillium Web", sans-serif;
+}
+
+.container_post {
   border: 1px solid #bbb7b7;
-  padding: 4rem 15rem;
+  margin-bottom: 20px;
+  padding: 20px 20px 30px 20px;
   background: rgb(155, 185, 187);
   background: radial-gradient(
     circle,
@@ -210,6 +225,84 @@ body {
     rgba(180, 218, 219, 0.8743872549019608) 100%
   );
   border-radius: 5px;
+  -webkit-box-shadow: 0px 5px 15px 0px rgba(112, 111, 112, 0.54);
+    -moz-box-shadow: 0px 5px 15px 0px rgba(112, 111, 112, 0.54);
+    box-shadow: 0px 5px 15px 0px rgba(112, 111, 112, 0.54);
+  
+}
+
+.welcome_title{
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+
+.post_input{
+  height: 35px;
+  width: 580px;
+  border: 1px solid #bbb7b7;
+  border-radius: 3px;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 20px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.content_post{
+  font-size: 1.3rem;
+}
+
+.button_edit, .button_delete{
+  width: 100px;
+  height: 24px;
+  background: #cbae9e;
+  border: 1px solid #aea9a9;
+  margin-top: 20px; /*agregue para darle separacion*/
+  border-radius: 3px;
+  margin-left: 20px;
+  font-size: 20px;
+}
+
+.button_edit:hover, .button_delete:hover{
+  background-color: #faead1;
+  transition-duration: 10ms;
+  cursor: pointer;
+}
+/*HOME con media query*/
+
+/*@media screen and (max-width:800px){
+.container_post {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 10px 80px;
+  width: 30rem;
+  height: 450px;
+  background: rgb(155, 185, 187);
+  background: radial-gradient(
+    circle,
+    rgba(155, 185, 187, 0.8463760504201681) 0%,
+    rgba(180, 218, 219, 0.8743872549019608) 100%
+  );
+  border: 1px solid #bbb7b7;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 50px 0 30px 0;
+  gap: 30px;
+  font-family: "Titillium Web", sans-serif;
+}}*/
+
+.container_feed_post {
+  border: 1px solid #bbb7b7;
+  padding: 4rem 6rem;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(94deg, rgba(255, 255, 255, 0.788) 0%, rgba(255, 255, 255, 0.793) 43%, rgba(245, 246, 250, 0.723) 100%);
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 5px 15px 0px rgba(112, 111, 112, 0.54);
+    -moz-box-shadow: 0px 5px 15px 0px rgba(112, 111, 112, 0.54);
+    box-shadow: 0px 5px 15px 0px rgba(112, 111, 112, 0.54);
+  margin: 30px 0;
+  text-align: justify;
 }
 
 .button_feed_container {

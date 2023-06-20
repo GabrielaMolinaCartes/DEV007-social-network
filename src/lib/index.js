@@ -26,9 +26,8 @@ export const ingresarUsuarioConCuentaGoogle = () => {
   return signInWithPopup(auth, provider);
 };
 
-export const crearPost = async (title, text) => {
+export const crearPost = async (text) => {
   const createPost = await addDoc(collection(db, "publicaciones"), {
-    titulo: title,
     contenido: text,
   });
 };
