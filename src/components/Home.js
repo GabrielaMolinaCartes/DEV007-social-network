@@ -1,5 +1,6 @@
 //import { async } from "regenerator-runtime";
-import { crearPost, mostrarPost, borrarPost } from "../lib/index.js";
+//import { async } from "regenerator-runtime";
+import { crearPost, mostrarPost, borrarPost, likePost } from "../lib/index.js";
 
 export const Home = (onNavigate) => {
   //Variables de divs del Dom
@@ -63,8 +64,14 @@ export const Home = (onNavigate) => {
       <div class="container_feed_post">
         <p class="content_post" >${publicacion.contenido}</p>
         <div class="button_feed_container">
-        <!--<button class="button_edit" data-id="${doc.id}" >Editar</button>-->
-          <button class="button_delete" data-id="${doc.id}" >Borrar</button>
+          <div>
+            <button class="like_btn" id="id_like_btn">
+            <img src="images/like.png" class="like_heart" >${publicacion.like}</img>
+            </button>
+          </div>
+        <button class="button_edit" data-id="${doc.id}" >Editar</button>
+        <button class="button_delete" data-id="${doc.id}" >Borrar</button>
+
         </div>
       </div>
       `;
@@ -87,11 +94,21 @@ export const Home = (onNavigate) => {
       });
     });
 
-    const buttonEdit = postFeedDiv.querySelectorAll(".button_edit");
+    /*const buttonEdit = postFeedDiv.querySelectorAll(".button_edit");
     buttonEdit.forEach((btn) => {
       btn.addEventListener("click", (e) => {
         console.log(e.target.dataset.id);
       });
+    });*/
+  });
+
+  // Evento para dar likes
+  const likeButton = postFeedDiv.querySelectorAll(".like_btn"); //tomamos el valor del selector
+  likeButton.forEach((e) => {
+    e.addEventListener("click", () => {
+      const likeValue = e.value;
+      const userId = auth.currentUser.uid;
+      likePost(likeValue, userId); //guardamos los parametros para entregarselos a las funciones de index.js
     });
   });
 
