@@ -3,6 +3,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
+  onAuthStateChanged,
 } from "firebase/auth";
 import {
   addDoc,
@@ -16,6 +17,14 @@ import { auth, db } from "../firebase";
 export const crearUsuarioConCorreoYContraseña = (email, contraseña) => {
   return createUserWithEmailAndPassword(auth, email, contraseña);
 };
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    onNavigate('/home');
+  } else {
+    onNavigate('/');
+  }
+});
 
 export const ingresarUsuarioConCorreoYContraseña = (email, contraseña) => {
   return signInWithEmailAndPassword(auth, email, contraseña);

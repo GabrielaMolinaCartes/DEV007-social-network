@@ -45,7 +45,7 @@ export const Login = (onNavigate) => {
   titleRegister.className = "register_title";
   titleRegister.textContent = "¿No tienes cuenta?";
   buttonRegister.classList.add("register_button");
-  buttonRegister.textContent = "Registrate Aquí";
+  buttonRegister.textContent = "Regístrate Aquí";
   //Atributos de login con google
   buttonLoginGoogle.className = "google-button";
   logoGoogle.src = "images/logoGoogle.svg";

@@ -10,10 +10,11 @@ export const Register = (onNavigate) => {
   const logoImg = document.createElement("img");
   const registerDiv = document.createElement("div");
   //Variables de inputs y buttons
+  const inputName = document.createElement("input");
   const inputEmail = document.createElement("input");
   const inputPassword = document.createElement("input");
   const buttonRegister = document.createElement("button");
-  const hrLine = document.createElement("hr"); /*intento de hacer la linea */
+  const hrLine = document.createElement("hr"); /*intento de hacer la linea*/
   //Variables para register con google
   const buttonRegisterGoogle = document.createElement("button");
   const logoGoogleSpan = document.createElement("span");
@@ -30,6 +31,11 @@ export const Register = (onNavigate) => {
   logoImg.className = "img_logo";
   logoImg.src = "images/MonuTrip.png";
   //Atributos de inputs y buttons
+  inputName.className = "name_input";
+  inputName.id = "nameId";
+  inputName.type = "text";
+  inputName.required = true;
+  inputName.placeholder = "Ingrese nombre";
   inputEmail.id = "inputEmail-id";
   inputEmail.classList.add("input_login");
   inputEmail.placeholder = "Ingrese Correo";
@@ -49,12 +55,12 @@ export const Register = (onNavigate) => {
   textGoogleSpan.textContent = "Registrarse con Google";
   //Atributos button volver login
   buttonBack.classList.add("back_button");
-  buttonBack.textContent = " Volver Atrás";
+  buttonBack.textContent = "Volver Atrás";
 
   //Event Listener de botones
   buttonRegister.addEventListener("click", (e) => {
     e.preventDefault();
-    crearUsuarioConCorreoYContraseña(inputEmail.value, inputPassword.value)
+    crearUsuarioConCorreoYContraseña(inputName.value, inputEmail.value, inputPassword.value)
       .then(() => {
         onNavigate("/home");
       })

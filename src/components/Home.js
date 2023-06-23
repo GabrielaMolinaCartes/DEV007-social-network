@@ -35,7 +35,7 @@ export const Home = (onNavigate) => {
   titleWelcome.textContent = "Bienvenida(o)";
   postPublish.id = "post-input";
   postPublish.className = "post_input";
-  postPublish.placeholder = "Comparte tu experiencia....";
+  postPublish.placeholder = " Comparte tu experiencia....";
   postPublish.rows = "4"; //para que sean 4 lineas
   buttonPublish.className = "publish_button";
   buttonPublish.textContent = "Publicar";
@@ -63,13 +63,13 @@ export const Home = (onNavigate) => {
       <div class="container_feed_post">
         <p class="content_post" >${publicacion.contenido}</p>
         <div class="button_feed_container">
-        <button class="button_edit" data-id="${doc.id}" >Editar</button>
+        <!--<button class="button_edit" data-id="${doc.id}" >Editar</button>-->
           <button class="button_delete" data-id="${doc.id}" >Borrar</button>
         </div>
       </div>
       `;
 
-      limpiarInput(); //limpia textarea
+      limpiarInput(); //limpia input
     });
 
     postFeedDiv.innerHTML = html;

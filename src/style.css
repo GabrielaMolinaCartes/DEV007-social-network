@@ -164,7 +164,7 @@ body {
 }
 /*Button volver atras, página rgister*/
 .back_button {
-  width: 5rem;
+  width: 6rem;
   height: 25px;
   background: #cbae9e;
   border: 1px solid #bbb7b7;
@@ -205,6 +205,7 @@ body {
   background: transparent;
   border: none;
   margin: 0 0 140px 300px;
+  cursor: pointer;
 }
 
 /*HOME*/
