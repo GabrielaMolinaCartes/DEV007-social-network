@@ -197,7 +197,7 @@ body {
   cursor: pointer;
 }
 
-.img_logout{
+.img_logout {
   height: 80px;
 }
 
@@ -226,18 +226,17 @@ body {
   );
   border-radius: 5px;
   -webkit-box-shadow: 0px 5px 15px 0px rgba(112, 111, 112, 0.54);
-    -moz-box-shadow: 0px 5px 15px 0px rgba(112, 111, 112, 0.54);
-    box-shadow: 0px 5px 15px 0px rgba(112, 111, 112, 0.54);
-  
+  -moz-box-shadow: 0px 5px 15px 0px rgba(112, 111, 112, 0.54);
+  box-shadow: 0px 5px 15px 0px rgba(112, 111, 112, 0.54);
 }
 
-.welcome_title{
+.welcome_title {
   text-align: center;
   margin-bottom: 20px;
   font-size: 30px;
 }
 
-.post_input{
+.post_input {
   height: 35px;
   width: 580px;
   border: 1px solid #bbb7b7;
@@ -247,11 +246,12 @@ body {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.content_post{
+.content_post {
   font-size: 1.3rem;
 }
 
-.button_edit, .button_delete{
+.button_edit,
+.button_delete {
   width: 100px;
   height: 24px;
   background: #cbae9e;
@@ -262,7 +262,8 @@ body {
   font-size: 20px;
 }
 
-.button_edit:hover, .button_delete:hover{
+.button_edit:hover,
+.button_delete:hover {
   background-color: #faead1;
   transition-duration: 10ms;
   cursor: pointer;
@@ -296,19 +297,33 @@ body {
   border: 1px solid #bbb7b7;
   padding: 4rem 6rem;
   background: rgb(255, 255, 255);
-  background: linear-gradient(94deg, rgba(255, 255, 255, 0.788) 0%, rgba(255, 255, 255, 0.793) 43%, rgba(245, 246, 250, 0.723) 100%);
+  background: linear-gradient(
+    94deg,
+    rgba(255, 255, 255, 0.788) 0%,
+    rgba(255, 255, 255, 0.793) 43%,
+    rgba(245, 246, 250, 0.723) 100%
+  );
   border-radius: 5px;
   -webkit-box-shadow: 0px 5px 15px 0px rgba(112, 111, 112, 0.54);
-    -moz-box-shadow: 0px 5px 15px 0px rgba(112, 111, 112, 0.54);
-    box-shadow: 0px 5px 15px 0px rgba(112, 111, 112, 0.54);
+  -moz-box-shadow: 0px 5px 15px 0px rgba(112, 111, 112, 0.54);
+  box-shadow: 0px 5px 15px 0px rgba(112, 111, 112, 0.54);
   margin: 30px 0;
   text-align: justify;
 }
 
 .button_feed_container {
   display: flex;
+  flex-direction: row-reverse;
   justify-content: end;
 }
 
 .button_feed {
+}
+
+.like_btn,
+.like_heart {
+  border: none;
+  background-color: transparent;
+  width: 20px;
+  height: 20px;
 }
