@@ -10,10 +10,12 @@ import {
   onSnapshot,
   deleteDoc,
   doc,
-  arrayUnion,
-  arrayRemove,
-  serverTimestamp,
-  orderBy,
+  getDoc,
+  updateDoc,
+  //arrayUnion,
+  //arrayRemove,
+  //serverTimestamp,
+  //orderBy,
 } from "firebase/firestore";
 import { auth, db } from "../firebase";
 
@@ -35,7 +37,7 @@ export const crearPost = async (text) => {
     //date: serverTimestamp(), //para poner las fechas ordenasdas
     contenido: text,
     //usuario: user,
-    like: [],
+    //like: [],
   });
 };
 
@@ -46,15 +48,22 @@ export const mostrarPost = (callback) =>
     onSnapshot(
       collection(db, "publicaciones", orderBy(("date", "desc"))),
       callback
-    );*/
+    );*/ //esto es igual a lo de arriba pero para el orden q no sirvio
 export const borrarPost = (id) => deleteDoc(doc(db, "publicaciones", id));
 
 //1:00:22 duda porque usa getTask //llegue al 1:02:58
 
-//export const getTask = (id) => getDoc(doc(db, "publicaciones", id));
+export const getTask = (id) => getDoc(doc(db, "publicaciones", id));
+
+export const updateTask = (postId, updatedData) => {
+  return updateDoc(doc(db, "publicaciones", postId), updatedData);
+};
+
+/*export const updateTask = (id, newPost) =>
+  updateDoc((db, "publicaciones", id), newPost);*/ //para guardar el nuevo post falta agregar en el home
 
 // Dar likes y contador de likes
-export const likePost = async (id, userLike) => {
+/*export const likePost = async (id, userLike) => {
   const likeRef = doc(db, "publicaciones", id); //accediendo a la colleccion de los posts
   const docSnap = await getDoc(likeRef); //estamos trayendo un post especifico con getDoc
   const postData = docSnap.data(); //nos permite agregar esta nueva data a cualquier elemneto de Dom
@@ -71,4 +80,4 @@ export const likePost = async (id, userLike) => {
       likesCounter: likesCount + 1,
     });
   }
-};
+};*/

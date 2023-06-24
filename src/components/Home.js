@@ -1,6 +1,12 @@
 //import { async } from "regenerator-runtime";
 //import { async } from "regenerator-runtime";
-import { crearPost, mostrarPost, borrarPost, likePost } from "../lib/index.js";
+import {
+  crearPost,
+  mostrarPost,
+  borrarPost,
+  getTask, //likePost,
+  updateTask,
+} from "../lib/index.js";
 
 export const Home = (onNavigate) => {
   //Variables de divs del Dom
@@ -8,7 +14,7 @@ export const Home = (onNavigate) => {
   const logoDiv = document.createElement("div");
   const logoImg = document.createElement("img");
   const postSection = document.createElement("section");
-  const postDiv = document.createElement("div");
+  const postDiv = document.createElement("form");
   const postFeedDiv = document.createElement("div");
   //Variable de botón salir
   const buttonLogout = document.createElement("button");
@@ -20,9 +26,12 @@ export const Home = (onNavigate) => {
 
   //Atributos de variables DOM
   HomeDiv.className = "container_all";
+  HomeDiv.id = "id-container-all"; //agregue este para lo de editar
   logoDiv.className = "div_logo";
   postSection.className = "section_post";
+  postSection.id = "id-section-post";
   postDiv.className = "container_post";
+  postDiv.id = "id-container-post"; //agregue este por lo de editar
   //Atributo botón salir
   logoutImg.className = "img_logout";
   logoutImg.src = "images/logout.png";
@@ -54,6 +63,14 @@ export const Home = (onNavigate) => {
     });
   });
 
+  /*function publishEventHandler(e) {
+    e.preventDefault();
+    const contentInput = document.getElementById("post-input").value;
+    crearPost(contentInput).then(() => {
+      //alert("Hola");
+    });
+  }
+*/
   const contentFeed = document.getElementById("post-feed");
 
   mostrarPost((querySnapshot) => {
@@ -61,8 +78,8 @@ export const Home = (onNavigate) => {
     querySnapshot.forEach((doc) => {
       const publicacion = doc.data();
       html += `
-      <div class="container_feed_post">
-        <p class="content_post" >${publicacion.contenido}</p>
+      <div class="container_feed_post" data-id="${doc.id}">
+        <p class="content_post" id ="id-content-post">${publicacion.contenido}</p>
         <div class="button_feed_container">
           <div>
             <button class="like_btn" id="id_like_btn">
@@ -94,21 +111,32 @@ export const Home = (onNavigate) => {
       });
     });
 
-    /*const buttonEdit = postFeedDiv.querySelectorAll(".button_edit");
-    buttonEdit.forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        console.log(e.target.dataset.id);
-      });
-    });*/
-  });
+    //EDITAR POST EN EL MISMO INPUT...
+    //let editStatus = false;
+    const taskForm = document.getElementById("id-container-post");
+    const buttonEdit = postFeedDiv.querySelectorAll(".button_edit");
 
-  // Evento para dar likes
-  const likeButton = postFeedDiv.querySelectorAll(".like_btn"); //tomamos el valor del selector
-  likeButton.forEach((e) => {
-    e.addEventListener("click", () => {
-      const likeValue = e.value;
-      const userId = auth.currentUser.uid;
-      likePost(likeValue, userId); //guardamos los parametros para entregarselos a las funciones de index.js
+    buttonEdit.forEach((btn) => {
+      btn.addEventListener("click", async (e) => {
+        //console.log(e.target.dataset.id);
+        const postId = e.target.dataset.id;
+        const doc = await getTask(postId);
+        //console.log(doc.data());
+        const task = doc.data();
+        const postInput = taskForm.querySelector("#post-input");
+        if (postInput) {
+          postInput.value = task.contenido;
+        }
+        //^desde aqui para arriba, funciona en que muestra el post para editar en el input, pero al apretar publicar guarda solo un nuevo post
+        //aqui para abajo, edita el boton, pero guarda el nuevo post y ademas edita siempre el mismo post(el 1ero que sale en pantalla), tiene error. Se comento lo de arriba tb para que esto funcione linea 66
+        /*buttonPublish.removeEventListener("click", publishEventHandler); // Remover el event listener anterior
+        buttonPublish.addEventListener("click", async (e) => {
+          e.preventDefault();
+          const updatedContent = postInput.value;
+          await updateTask(postId, { contenido: updatedContent });
+          mostrarPost();
+        });*/
+      });
     });
   });
 
