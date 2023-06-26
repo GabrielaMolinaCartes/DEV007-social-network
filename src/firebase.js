@@ -22,3 +22,5 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 // Conecta con firestore
 export const db = getFirestore(app);
+// Autentifica el usuario
+//export const user = auth.currentUser;
