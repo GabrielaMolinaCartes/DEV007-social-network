@@ -271,8 +271,17 @@ body {
 }
 /*HOME con media query*/
 
-/*@media screen and (max-width:800px){
-.container_post {
+@media screen and (max-width:844px){
+
+.body{
+  background-image: url(images/MonuTripResponsive.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+/*.container_post {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -293,6 +302,7 @@ body {
   gap: 30px;
   font-family: "Titillium Web", sans-serif;
 }}*/
+}
 
 .container_feed_post {
   border: 1px solid #bbb7b7;
