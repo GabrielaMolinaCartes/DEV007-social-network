@@ -1,5 +1,4 @@
 // import { async } from "regenerator-runtime";
-// import { async } from "regenerator-runtime";
 import {
   crearPost,
   mostrarPost,

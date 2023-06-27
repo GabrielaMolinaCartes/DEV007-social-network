@@ -18,6 +18,8 @@ import {
   //orderBy,
 } from "firebase/firestore";
 import { auth, db } from "../firebase";
+//serverTimestamp,
+//orderBy,
 
 export const crearUsuarioConCorreoYContraseña = (email, contraseña) =>
   createUserWithEmailAndPassword(auth, email, contraseña);
@@ -31,6 +33,7 @@ export const ingresarUsuarioConCuentaGoogle = () => {
 };
 
 //Crea y guarda el post
+
 export const crearPost = async (text) => {
   const createPost = await addDoc(collection(db, "publicaciones"), {
     // date: serverTimestamp(), //para poner las fechas ordenasdas
@@ -40,6 +43,7 @@ export const crearPost = async (text) => {
     userId: auth.currentUser.uid,
   });
 };
+
 //Muestra los post en pantalla
 export const mostrarPost = (callback) =>
   onSnapshot(collection(db, "publicaciones"), callback);
@@ -48,6 +52,7 @@ export const mostrarPost = (callback) =>
 export const borrarPost = (id) => deleteDoc(doc(db, "publicaciones", id));
 
 // Likes
+
 export const addLike = async (id, userLike) => {
   await updateDoc(doc(db, "publicaciones", id), {
     likes: arrayUnion(userLike),
