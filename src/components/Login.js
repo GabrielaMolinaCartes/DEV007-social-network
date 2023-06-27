@@ -30,7 +30,7 @@ export const Login = (onNavigate) => {
   registerContainer.className = "container_register";
   //Atributos de imagen del título
   logoImg.className = "img_logo";
-  logoImg.src = "images/MonuTrip.png";
+  logoImg.src = "images/MonuTrip1.png";
   //Atributos de inputs y buttons
   inputEmail.id = "inputEmail-id";
   inputEmail.classList.add("input_login");

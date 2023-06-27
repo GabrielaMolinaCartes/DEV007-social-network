@@ -27,12 +27,12 @@ export const Home = (onNavigate) => {
   postDiv.className = 'container_post';
   // Atributo botón salir
   logoutImg.className = 'img_logout';
-  logoutImg.src = 'images/logout.png';
+  logoutImg.src = 'images/logout1.png';
   buttonLogout.className = 'logout_button';
 
   // Atributos de imagen del título
   logoImg.className = 'img_logo';
-  logoImg.src = 'images/MonuTrip.png';
+  logoImg.src = 'images/MonuTrip1.png';
   // Atributos de formulario
   titleWelcome.className = 'welcome_title';
   titleWelcome.textContent = 'Bienvenida(o)';
@@ -107,9 +107,9 @@ export const Home = (onNavigate) => {
   // Evento para dar likes
   function likeEvent() {
     const likeButton = postFeedDiv.querySelectorAll('.like_btn'); // tomamos el valor del selector
-    likeButton.forEach((e) => {
-      e.addEventListener('click', () => {
-        const likeValue = e.id;
+    likeButton.forEach((button) => {
+      button.addEventListener('click', () => {
+        const likeValue = button.id;
         const userId = getUser().uid;
         getLikes(likeValue).then((postLike) => {
           const allData = postLike.data();
