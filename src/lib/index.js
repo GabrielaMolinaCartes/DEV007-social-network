@@ -30,6 +30,9 @@ export const ingresarUsuarioConCuentaGoogle = () => {
   return signInWithPopup(auth, provider);
 };
 
+// Exporta el usuario actual
+export const getCurrentUser = () => auth.currentUser;
+
 //Crea y guarda el post
 export const crearPost = async (text) => {
   const createPost = await addDoc(collection(db, "publicaciones"), {
