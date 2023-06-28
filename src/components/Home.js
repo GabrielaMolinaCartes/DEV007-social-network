@@ -17,7 +17,7 @@ export const Home = (onNavigate) => {
   const logoDiv = document.createElement("div");
   const logoImg = document.createElement("img");
   const postSection = document.createElement("section");
-  const postDiv = document.createElement("div");
+  const postDiv = document.createElement("form");
   const postFeedDiv = document.createElement("div");
   // Variable de botón salir
   const buttonLogout = document.createElement("button");
@@ -32,6 +32,7 @@ export const Home = (onNavigate) => {
   HomeDiv.id = "id-container-all";
   logoDiv.className = "div_logo";
   postSection.className = "section_post";
+  postSection.id = "id-section-post";
   postDiv.className = "container_post";
   postDiv.id = "id-container-post";
   // Atributo botón salir
@@ -83,8 +84,8 @@ export const Home = (onNavigate) => {
     querySnapshot.forEach((doc) => {
       const publicacion = doc.data();
       html += `
-      <div class="container_feed_post">
-        <p class="content_post" >${publicacion.contenido}</p>
+      <div class="container_feed_post" data-id="${doc.id}">
+        <p class="content_post" id ="id-content-post">${publicacion.contenido}</p>
         <div class="button_feed_container">
           <div>
             <button class="like_btn" id="${doc.id}">
