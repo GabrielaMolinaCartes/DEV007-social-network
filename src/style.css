@@ -7,7 +7,7 @@
 }
 
 body {
-  background-image: url(images/imagenfondo1.png);
+  background-image: url(images/imagenfondo2.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -259,7 +259,7 @@ body {
   border: 1px solid #aea9a9;
   margin-top: 20px; /*agregue para darle separacion*/
   border-radius: 3px;
-  margin-left: 20px;
+  margin-right: 40px;
   font-size: 20px;
 }
 
@@ -335,6 +335,8 @@ body {
 .like_heart {
   border: none;
   background-color: transparent;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-family: "Titillium Web", sans-serif;
 }
