@@ -9,7 +9,6 @@ import {
   removeLike,
   getPost,
   updatePost,
-  getCurrentUser,
 } from '../lib/index.js';
 
 export const Home = (onNavigate) => {
@@ -87,7 +86,7 @@ export const Home = (onNavigate) => {
   mostrarPost((querySnapshot) => {
     let html = '';
     querySnapshot.forEach((doc) => {
-      const currentUser = getCurrentUser();
+      const currentUser = getUser();
       const dataLikes = doc.data();
       const userLike = dataLikes.likes.includes(currentUser.uid);
       const imgLikeButton = userLike ? 'like.png' : 'dislike.png';

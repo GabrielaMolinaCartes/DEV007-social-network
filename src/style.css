@@ -157,9 +157,7 @@ body {
 }
 
 .register_button:hover {
-  text-decoration: solid;
   transform: scale(1.05);
-  /*background-color: #cbae9e;*/
   text-decoration: underline;
 }
 /*Button volver atras, página rgister*/
@@ -326,9 +324,6 @@ body {
   display: flex;
   flex-direction: row-reverse;
   justify-content: end;
-}
-
-.button_feed {
 }
 
 .like_btn,

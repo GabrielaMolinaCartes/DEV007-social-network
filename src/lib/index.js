@@ -32,9 +32,6 @@ export const ingresarUsuarioConCuentaGoogle = () => {
   return signInWithPopup(auth, provider);
 };
 
-// Exporta el usuario actual
-export const getCurrentUser = () => auth.currentUser;
-
 // Crea y guarda el post
 
 export const crearPost = async (text) => {
@@ -55,7 +52,6 @@ export const mostrarPost = (callback) => onSnapshot(collection(db, 'publicacione
 export const borrarPost = (id) => deleteDoc(doc(db, 'publicaciones', id));
 
 // Likes
-
 export const addLike = async (id, userLike) => {
   await updateDoc(doc(db, 'publicaciones', id), {
     likes: arrayUnion(userLike),
