@@ -4,12 +4,12 @@ import {
   mostrarPost,
   borrarPost,
   addLike,
-  getUser,
   getLikes,
   removeLike,
   getPost,
   updatePost,
 } from '../lib/index.js';
+import { getUser } from '../firebase';
 
 export const Home = (onNavigate) => {
   // Variables de divs del Dom
@@ -91,8 +91,10 @@ export const Home = (onNavigate) => {
       const userLike = dataLikes.likes.includes(currentUser.uid);
       const imgLikeButton = userLike ? 'like.png' : 'dislike.png';
       const publicacion = doc.data();
+      const fecha = publicacion.date.toDate().toLocaleString();
       html += `
       <div class="container_feed_post" data-id="${doc.id}">
+      <p class="content_date" >${fecha}</p>
         <p class="content_post" id ="id-content-post">${publicacion.contenido}</p>
         <div class="button_feed_container">
           <div>

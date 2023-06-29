@@ -2,7 +2,6 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signInWithPopup,
-  GoogleAuthProvider,
 } from 'firebase/auth';
 import {
   addDoc,
@@ -18,7 +17,7 @@ import {
   orderBy,
   query,
 } from 'firebase/firestore';
-import { auth, db } from '../firebase';
+import { auth, db, provider } from '../firebase';
 // serverTimestamp,
 // orderBy,
 
@@ -28,16 +27,13 @@ export const crearUsuarioConCorreoYContraseña = (email, contraseña) => createU
 // eslint-disable-next-line max-len
 export const ingresarUsuarioConCorreoYContraseña = (email, contraseña) => signInWithEmailAndPassword(auth, email, contraseña);
 
-export const ingresarUsuarioConCuentaGoogle = () => {
-  const provider = new GoogleAuthProvider();
-  return signInWithPopup(auth, provider);
-};
+export const ingresarUsuarioConCuentaGoogle = () => signInWithPopup(auth, provider);
 
 // Crea y guarda el post
 
 export const crearPost = async (text) => {
   const createPost = await addDoc(collection(db, 'publicaciones'), {
-    date: serverTimestamp(), // para poner las fechas ordenasdas
+    date: serverTimestamp(), // para poner las fechas ordenadas
     contenido: text,
     // usuario: user,
     likes: [],
@@ -63,7 +59,7 @@ export const removeLike = async (id, userLike) => {
     likes: arrayRemove(userLike),
   });
 };
-export const getUser = () => auth.currentUser;
+
 export const getLikes = (id) => getDoc(doc(db, 'publicaciones', id));
 
 // Editar
