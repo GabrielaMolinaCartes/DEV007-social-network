@@ -14,8 +14,9 @@ import {
   arrayRemove,
   updateDoc,
   getDoc,
-  // serverTimestamp,
-  // orderBy,
+  serverTimestamp,
+  orderBy,
+  query,
 } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 // serverTimestamp,
@@ -36,7 +37,7 @@ export const ingresarUsuarioConCuentaGoogle = () => {
 
 export const crearPost = async (text) => {
   const createPost = await addDoc(collection(db, 'publicaciones'), {
-    // date: serverTimestamp(), // para poner las fechas ordenasdas
+    date: serverTimestamp(), // para poner las fechas ordenasdas
     contenido: text,
     // usuario: user,
     likes: [],
@@ -46,7 +47,7 @@ export const crearPost = async (text) => {
 };
 
 // Muestra los post en pantalla
-export const mostrarPost = (callback) => onSnapshot(collection(db, 'publicaciones'), callback);
+export const mostrarPost = (callback) => onSnapshot(query(collection(db, 'publicaciones'), orderBy('date', 'desc')), callback);
 
 // Borrar post
 export const borrarPost = (id) => deleteDoc(doc(db, 'publicaciones', id));

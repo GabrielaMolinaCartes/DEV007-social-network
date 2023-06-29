@@ -1,7 +1,9 @@
 // importamos la funcion que vamos a testear
 // import { async } from "regenerator-runtime"; ?????
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import { deleteDoc, getDoc } from 'firebase/firestore';
+import {
+  createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, auth,
+} from 'firebase/auth';
+import { deleteDoc, getDoc, addDoc } from 'firebase/firestore';
 import {
   crearUsuarioConCorreoYContraseña,
   ingresarUsuarioConCorreoYContraseña,
@@ -9,10 +11,10 @@ import {
   borrarPost,
   getPost,
   getLikes,
+  crearPost,
 } from '../src/lib/index';
 
 jest.mock('firebase/auth');
-jest.mock('firebase/firestore');
 // 1er test con mocks
 describe('ingresarUsuarioConCorreoYContraseña', () => {
   it('Es una funcion', () => {
@@ -90,5 +92,27 @@ describe('getLikes', () => {
   it('deberia llamar a la funcion getDoc cuando es ejecutada', async () => {
     await getLikes('id');
     expect(getDoc).toHaveBeenCalled();
+  });
+});
+
+jest.mock('firebase/firestore');
+jest.mock('../src/firebase.js', () => ({
+  auth: {
+    currentUser: {
+      displayName: 'Javier',
+      email: 'javier1234@mail.com',
+      uid: '1234567',
+    },
+  },
+}));
+describe('crearPost', () => {
+  it('debería retornar un post creado', async () => {
+    addDoc.mockReturnValueOnce({ text: 'Hola' });
+    // console.log(mock);
+    const mockAuthUser = jest.fn().mockResolvedValue();
+    auth.currentUser.uid = mockAuthUser;
+    const mockCrearPost = jest.fn().mockResolvedValue();
+    await crearPost();
+    expect(mockCrearPost).toHaveBeenCalled();
   });
 });
