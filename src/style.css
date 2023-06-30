@@ -279,6 +279,12 @@ body {
   
 }
 
+.button_edit:hover,
+.button_delete:hover {
+  background-color: #faead1;
+  transition-duration: 10ms;
+  cursor: pointer;
+}
 .like_btn,
 .like_heart {
   border: none;
