@@ -9,7 +9,7 @@ import {
   getPost,
   updatePost,
 } from '../lib/index.js';
-import { getUser } from '../firebase';
+import { getUser, auth } from '../firebase';
 
 export const Home = (onNavigate) => {
   // Variables de divs del Dom
@@ -64,10 +64,17 @@ export const Home = (onNavigate) => {
   let postIdEditing = '';
   let editMode = false;
   // Botón publicar
+
+  // Trim() elimina espacios en blanco y compara el resultado con una cadena vacía ('').
+
   buttonPublish.addEventListener('click', async (e) => {
     e.preventDefault();
-    if (editMode === false) {
-      const contentInput = document.getElementById('post-input').value;
+    const contentInput = document.getElementById('post-input').value;
+    if (contentInput.trim() === '') {
+      // eslint-disable-next-line no-alert
+      alert('¡Campo vacío! Ingrese Post');
+      return;
+    } if (editMode === false) {
       crearPost(contentInput).then(() => {});
     } else {
       const postInput = document.querySelector('#post-input');
@@ -95,8 +102,8 @@ export const Home = (onNavigate) => {
       const fecha = publicacion.date.toDate().toLocaleString();
       html += `
       <div class="container_feed_post" data-id="${doc.id}">
-      <p class="content_date" >${fecha}</p>
-      <p class="content_user">${publicacion.usuario}</p>
+        <p class="content_date" >${fecha}</p>
+        <p class="content_user">${publicacion.usuario}</p>
         <p class="content_post" id ="id-content-post">${publicacion.contenido}</p>
         <div class="button_feed_container">
           <div>
@@ -104,13 +111,11 @@ export const Home = (onNavigate) => {
             <img src="images/${imgLikeButton}" class="like_heart" >${publicacion.likes.length}</img>
             </button>
           </div>
-        <button class="button_edit" data-id="${doc.id}" >Editar</button>
-        <button class="button_delete" data-id="${doc.id}" >Borrar</button>
-
+          <button class="button_edit" data-id="${doc.id}" >Editar</button>
+          <button class="button_delete" data-id="${doc.id}" >Borrar</button>
         </div>
       </div>
       `;
-
       limpiarInput();
     });
 
@@ -136,6 +141,47 @@ export const Home = (onNavigate) => {
 
     postFeedDiv.innerHTML = html;
     likeEvent();
+
+    const dialog = document.createElement('dialog');
+    const dialogTitle = document.createElement('h3');
+    const dialogMessage = document.createElement('p');
+    const confirmButton = document.createElement('button');
+    const cancelButton = document.createElement('button');
+
+    dialog.setAttribute('id', 'modal');
+    confirmButton.setAttribute('id', 'confirmButton');
+    cancelButton.setAttribute('id', 'cancelButton');
+    dialogTitle.textContent = 'Eliminar publicación';
+    dialogMessage.textContent = '¿Estás seguro que deseas eliminar esta publicación?';
+    confirmButton.innerHTML = '<b>Eliminar</b>';
+    cancelButton.innerHTML = '<b>Cancelar</b>';
+
+    dialog.appendChild(dialogTitle);
+    dialog.appendChild(dialogMessage);
+    dialog.appendChild(confirmButton);
+    dialog.appendChild(cancelButton);
+
+    // para cuando se de en eliminar aparezca en modal con las opciones
+    const deleteModal = doc.data();
+    if (crearPost.userId === deleteModal.email) {
+      deleteBtn.addEventListener('click', () => {
+        document.body.appendChild(dialog);
+        dialog.showModal();
+      });
+
+      // elimina publicación
+      confirmButton.addEventListener('click', () => {
+        deletePost(docum.id)
+          .then(() => {
+            dialog.close();
+          });
+      });
+
+      // cancela publicación que se quiere eliminar
+      cancelButton.addEventListener('click', () => {
+        dialog.close();
+      });
+    }
 
     // Boton borrar
     const buttonDelete = postFeedDiv.querySelectorAll('.button_delete');
