@@ -36,6 +36,7 @@ export const crearPost = async (text) => {
     date: serverTimestamp(), // para poner las fechas ordenadas
     contenido: text,
     // usuario: user,
+    usuario: auth.currentUser.displayName, // Guarda el nombre del usuario en el post
     likes: [],
     userId: auth.currentUser.uid,
   });

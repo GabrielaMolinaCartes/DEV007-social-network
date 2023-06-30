@@ -52,6 +52,7 @@ export const Home = (onNavigate) => {
   // postPublish.rows = "4"; // para que sean 4 lineas
   buttonPublish.className = 'publish_button';
   buttonPublish.textContent = 'Publicar';
+
   // Atributos de publicaciones creadas
   postFeedDiv.id = 'post-feed';
 
@@ -95,6 +96,7 @@ export const Home = (onNavigate) => {
       html += `
       <div class="container_feed_post" data-id="${doc.id}">
       <p class="content_date" >${fecha}</p>
+      <p class="content_user">${publicacion.usuario}</p>
         <p class="content_post" id ="id-content-post">${publicacion.contenido}</p>
         <div class="button_feed_container">
           <div>
