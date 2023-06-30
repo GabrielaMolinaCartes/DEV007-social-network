@@ -278,7 +278,24 @@ body {
   justify-content: flex-end;
   
 }
+.button_edit,
+.button_delete {
+  width: 100px;
+  height: 24px;
+  background: #cbae9e;
+  border: 1px solid #aea9a9;
+  margin-top: 20px;
+  border-radius: 3px;
+  margin-right: 40px;
+  font-size: 20px;
+}
 
+.button_edit:hover,
+.button_delete:hover {
+  background-color: #faead1;
+  transition-duration: 10ms;
+  cursor: pointer;
+}
 .like_btn,
 .like_heart {
   border: none;
