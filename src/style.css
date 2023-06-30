@@ -1,5 +1,3 @@
-/*@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;400&display=swap');*/
-
 * {
   margin: 0;
   padding: 0;
@@ -13,7 +11,7 @@ body {
   background-attachment: fixed;
   background-position: center;
 }
-
+/*Login y Registro*/
 .div_logo {
   display: flex;
   justify-content: center;
@@ -21,7 +19,7 @@ body {
 }
 
 .img_logo {
-  width: 400px;
+  width: 360px;
 }
 
 .container_all {
@@ -29,7 +27,7 @@ body {
   flex-direction: column;
   align-items: center;
 }
-
+/*Login*/
 .container_login {
   display: flex;
   flex-direction: column;
@@ -135,7 +133,7 @@ body {
   width: 18px;
   height: 18px;
 }
-
+/*Registro*/
 .container_register {
   text-align: center;
   display: flex;
@@ -177,39 +175,28 @@ body {
   background-color: #faead1;
 }
 
-.publish_button {
-  width: 150px;
-  height: 30px;
-  background: #cbae9e;
-  border: 1px solid #aea9a9;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin-top: 20px; /*agregue para darle separacion*/
-  border-radius: 3px;
-  margin-left: 20px;
-  font-size: 22px;
-}
-
-.publish_button:hover {
-  background-color: #faead1;
-  transition-duration: 10ms;
-  cursor: pointer;
+/*Home*/
+.div_logo{
+  display: flex;
+  justify-content: space-between;
 }
 
 .img_logout {
-  height: 80px;
+  height: 50px;
 }
 
 .logout_button {
   background: transparent;
   border: none;
-  margin: 0 0 140px 300px;
   cursor: pointer;
 }
 
-/*HOME*/
 .section_post {
-  height: 800px;
-  width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 300px;
+  width: 300px;
   font-family: "Titillium Web", sans-serif;
 }
 
@@ -237,74 +224,40 @@ body {
 
 .post_input {
   height: 35px;
-  width: 580px;
+  /* width: 580px;*/
+  width: 45vh;
   border: 1px solid #bbb7b7;
   border-radius: 3px;
   font-family: "Titillium Web", sans-serif;
   font-size: 20px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.publish_button {
+  width: 150px;
+  height: 30px;
+  background: #cbae9e;
+  border: 1px solid #aea9a9;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-top: 20px;
+  border-radius: 3px;
+  margin-left: 20px;
+  font-size: 22px;
+}
+
+.publish_button:hover {
+  background-color: #faead1;
+  transition-duration: 10ms;
+  cursor: pointer;
 }
 
 .content_post {
   font-size: 1.3rem;
 }
 
-.button_edit,
-.button_delete {
-  width: 100px;
-  height: 24px;
-  background: #cbae9e;
-  border: 1px solid #aea9a9;
-  margin-top: 20px; /*agregue para darle separacion*/
-  border-radius: 3px;
-  margin-right: 40px;
-  font-size: 20px;
-}
-
-.button_edit:hover,
-.button_delete:hover {
-  background-color: #faead1;
-  transition-duration: 10ms;
-  cursor: pointer;
-}
-/*HOME con media query*/
-
-@media screen and (max-width:844px){
-
-.body{
-  background-image: url(images/MonuTripResponsive.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
-}
-
-/*.container_post {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
-  margin: 10px 80px;
-  width: 30rem;
-  height: 450px;
-  background: rgb(155, 185, 187);
-  background: radial-gradient(
-    circle,
-    rgba(155, 185, 187, 0.8463760504201681) 0%,
-    rgba(180, 218, 219, 0.8743872549019608) 100%
-  );
-  border: 1px solid #bbb7b7;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-  padding: 50px 0 30px 0;
-  gap: 30px;
-  font-family: "Titillium Web", sans-serif;
-}}*/
-}
-
 .container_feed_post {
   border: 1px solid #bbb7b7;
-  padding: 4rem 6rem;
+  padding: 1rem 2rem;
   background: rgb(255, 255, 255);
   background: linear-gradient(
     94deg,
@@ -322,8 +275,8 @@ body {
 
 .button_feed_container {
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: end;
+  justify-content: flex-end;
+  
 }
 
 .like_btn,
@@ -334,4 +287,58 @@ body {
   height: 30px;
   cursor: pointer;
   font-family: "Titillium Web", sans-serif;
+}
+
+@media only screen and (min-width: 1180px) {
+  .section_post {
+  height: 80vh;
+  width: 150vh;
+  font-family: "Titillium Web", sans-serif;
+}
+.post_input {
+  height: 35px;
+  width: 60vh;
+  border: 1px solid #bbb7b7;
+  border-radius: 3px;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 20px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.container_post {
+  height: 30vh;
+  width: 90vh;
+  border: 1px solid #bbb7b7;
+  margin-bottom: 20px;
+  padding: 20px 20px 30px 20px;
+  background: rgb(155, 185, 187);
+  background: radial-gradient(
+    circle,
+    rgba(155, 185, 187, 0.8463760504201681) 0%,
+    rgba(180, 218, 219, 0.8743872549019608) 100%
+  );
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 5px 15px 0px rgba(112, 111, 112, 0.54);
+  -moz-box-shadow: 0px 5px 15px 0px rgba(112, 111, 112, 0.54);
+  box-shadow: 0px 5px 15px 0px rgba(112, 111, 112, 0.54);
+}
+
+.container_feed_post {
+  border: 1px solid #bbb7b7;
+  height: 30vh;
+  width: 90vh;
+  padding: 4rem 2rem 1rem 2rem;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    94deg,
+    rgba(255, 255, 255, 0.788) 0%,
+    rgba(255, 255, 255, 0.793) 43%,
+    rgba(245, 246, 250, 0.723) 100%
+  );
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 5px 15px 0px rgba(112, 111, 112, 0.54);
+  -moz-box-shadow: 0px 5px 15px 0px rgba(112, 111, 112, 0.54);
+  box-shadow: 0px 5px 15px 0px rgba(112, 111, 112, 0.54);
+  margin: 30px 0;
+  text-align: justify;
+}
 }
