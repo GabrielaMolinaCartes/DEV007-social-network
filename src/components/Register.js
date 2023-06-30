@@ -29,7 +29,7 @@ export const Register = (onNavigate) => {
   registerDiv.className = 'container_login';
   // Atributos de imagen del título
   logoImg.className = 'img_logo';
-  logoImg.src = 'images/MonuTrip.png';
+  logoImg.src = 'images/MonuTrip1.png';
   // Atributos de inputs y buttons
   inputName.className = 'name_input';
   inputName.id = 'nameId';

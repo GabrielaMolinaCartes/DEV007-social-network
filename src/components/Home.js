@@ -66,8 +66,12 @@ export const Home = (onNavigate) => {
   // Botón publicar
   buttonPublish.addEventListener('click', async (e) => {
     e.preventDefault();
-    if (editMode === false) {
-      const contentInput = document.getElementById('post-input').value;
+    const contentInput = document.getElementById('post-input').value;
+    if (contentInput.trim() === '') {
+      // eslint-disable-next-line no-alert
+      alert('¡Campo vacío! Ingrese Post');
+      return;
+    } if (editMode === false) {
       crearPost(contentInput).then(() => {});
     } else {
       const postInput = document.querySelector('#post-input');
@@ -99,13 +103,13 @@ export const Home = (onNavigate) => {
       <p class="content_user">${publicacion.usuario}</p>
         <p class="content_post" id ="id-content-post">${publicacion.contenido}</p>
         <div class="button_feed_container">
+            <button class="button_edit" data-id="${doc.id}" >Editar</button>
+            <button class="button_delete" data-id="${doc.id}" >Borrar</button>
           <div>
             <button class="like_btn" id="${doc.id}">
             <img src="images/${imgLikeButton}" class="like_heart" >${publicacion.likes.length}</img>
             </button>
           </div>
-        <button class="button_edit" data-id="${doc.id}" >Editar</button>
-        <button class="button_delete" data-id="${doc.id}" >Borrar</button>
 
         </div>
       </div>

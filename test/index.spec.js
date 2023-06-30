@@ -38,7 +38,7 @@ describe('crearUsuarioConCorreoYContraseña', () => {
   it('Es una funcion', () => {
     expect(typeof crearUsuarioConCorreoYContraseña).toBe('function');
   });
-  it('deberia llamar a la funcion createUserWithEmailAndPassword cuando es ejecutada', async () => {
+  it('Deberia llamar a la funcion createUserWithEmailAndPassword cuando es ejecutada', async () => {
     await crearUsuarioConCorreoYContraseña('hola12345@mail.com', 'hola12345', () => {
       expect(createUserWithEmailAndPassword).toHaveBeenCalled(1);
     });
@@ -54,7 +54,7 @@ describe('ingresarUsuarioConCorreoYContraseña', () => {
   it('Es una funcion', () => {
     expect(typeof ingresarUsuarioConCorreoYContraseña).toBe('function');
   });
-  it('deberia llamar a la funcion signInWithEmailAndPassword cuando es ejecutada', async () => {
+  it('Deberia llamar a la funcion signInWithEmailAndPassword cuando es ejecutada', async () => {
     await ingresarUsuarioConCorreoYContraseña(
       'juanitaperez@mail.com',
       'juanita1234',
@@ -81,7 +81,7 @@ describe('ingresarUsuarioConCuentaGoogle', () => {
     await ingresarUsuarioConCuentaGoogle('monumento@mail.com', 'contraseña');
     expect(signInWithPopup).toHaveBeenCalled();
   });
-  it('Deberia devolver datos del usuario una vez logeado', async () => {
+  it('Deberia devolver datos del usuario una vez logueado', async () => {
     signInWithPopup.mockReturnValueOnce({ user: 'Javier Perez' });
     const provider = GoogleAuthProvider.mockReturnValueOnce({});
     // eslint-disable-next-line no-console
@@ -95,7 +95,7 @@ describe('crearPost', () => {
   it('Es una función', () => {
     expect(typeof crearPost).toBe('function');
   });
-  it('debería retornar un post creado', async () => {
+  it('Debería retornar un post creado', async () => {
     const mockAddDoc = jest.fn().mockResolvedValue({ text: 'Hola' });
     addDoc.mockImplementationOnce(mockAddDoc);
     auth.currentUser = {
@@ -111,7 +111,7 @@ describe('mostrarPost', () => {
   it('Es una función', () => {
     expect(typeof mostrarPost).toBe('function');
   });
-  it('deberia llamar a la funcion deleteDoc cuando es ejecutada', async () => {
+  it('Deberia llamar a la funcion deleteDoc cuando es ejecutada', async () => {
     await mostrarPost('ID');
     expect(onSnapshot).toHaveBeenCalled();
   });
@@ -121,7 +121,7 @@ describe('borrarPost', () => {
   it('Es una función', () => {
     expect(typeof borrarPost).toBe('function');
   });
-  it('deberia llamar a la funcion deleteDoc cuando es ejecutada', async () => {
+  it('Deberia llamar a la funcion deleteDoc cuando es ejecutada', async () => {
     await borrarPost('ID');
     expect(deleteDoc).toHaveBeenCalled();
   });
@@ -131,7 +131,7 @@ describe('addLike', () => {
   it('Es una función', () => {
     expect(typeof addLike).toBe('function');
   });
-  it('deberia llamar a la funcion addLikes cuando es ejecutada', async () => {
+  it('Deberia llamar a la funcion addLikes cuando es ejecutada', async () => {
     await addLike('id');
     expect(updateDoc).toHaveBeenCalled();
   });
@@ -142,7 +142,7 @@ describe('removeLike', () => {
   it('Es una función', () => {
     expect(typeof removeLike).toBe('function');
   });
-  it('deberia llamar a la funcion removeLike cuando es ejecutada', async () => {
+  it('Deberia llamar a la funcion removeLike cuando es ejecutada', async () => {
     await removeLike('id');
     expect(updateDoc).toHaveBeenCalled();
   });
@@ -152,7 +152,7 @@ describe('getLikes', () => {
   it('Es una función', () => {
     expect(typeof getLikes).toBe('function');
   });
-  it('deberia llamar a la funcion getLikes cuando es ejecutada', async () => {
+  it('Deberia llamar a la funcion getLikes cuando es ejecutada', async () => {
     await getLikes('id');
     expect(getDoc).toHaveBeenCalled();
   });
@@ -162,7 +162,7 @@ describe('getPost', () => {
   it('Es una función', () => {
     expect(typeof getPost).toBe('function');
   });
-  it('deberia llamar a la funcion getDoc cuando es ejecutada', async () => {
+  it('Deberia llamar a la funcion getDoc cuando es ejecutada', async () => {
     await getPost('id');
     expect(getDoc).toHaveBeenCalled();
   });
@@ -173,7 +173,7 @@ describe('updatePost', () => {
   it('Es una función', () => {
     expect(typeof updatePost).toBe('function');
   });
-  it('deberia llamar a la funcion updateDoc cuando es ejecutada', async () => {
+  it('Deberia llamar a la funcion updateDoc cuando es ejecutada', async () => {
     await updatePost('id');
     expect(updateDoc).toHaveBeenCalled();
   });
