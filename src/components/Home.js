@@ -9,7 +9,7 @@ import {
   getPost,
   updatePost,
 } from '../lib/index.js';
-import { getUser } from '../firebase';
+import { getUser, getLoggedUser } from '../firebase';
 
 export const Home = (onNavigate) => {
   // Variables de divs del Dom
@@ -45,7 +45,7 @@ export const Home = (onNavigate) => {
   logoImg.src = 'images/MonuTrip1.png';
   // Atributos de formulario
   titleWelcome.className = 'welcome_title';
-  titleWelcome.textContent = 'Bienvenida(o)';
+  titleWelcome.textContent = `Bienvenida(o), ${getLoggedUser()}`;
   postPublish.id = 'post-input';
   postPublish.className = 'post_input';
   postPublish.placeholder = ' Comparte tu experiencia....';

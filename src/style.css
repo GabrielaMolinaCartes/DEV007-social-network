@@ -176,10 +176,10 @@ body {
 }
 
 /*Home*/
-.div_logo{
+/*/.div_logo{
   display: flex;
   justify-content: space-between;
-}
+}*/
 
 .img_logout {
   height: 50px;
