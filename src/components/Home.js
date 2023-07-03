@@ -45,7 +45,9 @@ export const Home = (onNavigate) => {
   logoImg.src = 'images/MonuTrip1.png';
   // Atributos de formulario
   titleWelcome.className = 'welcome_title';
-  titleWelcome.textContent = `Bienvenida(o), ${getLoggedUser()}`;
+  getLoggedUser();
+  const displayName = localStorage.getItem('displayName');
+  titleWelcome.textContent = `Bienvenida(o), ${displayName}`;
   postPublish.id = 'post-input';
   postPublish.className = 'post_input';
   postPublish.placeholder = ' Comparte tu experiencia....';

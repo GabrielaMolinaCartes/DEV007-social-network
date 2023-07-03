@@ -35,7 +35,7 @@ body {
   align-items: center;
   margin: 10px 80px;
   width: 20rem;
-  height: 450px;
+  height: 500px;
   background: rgb(155, 185, 187);
   background: radial-gradient(
     circle,
@@ -278,7 +278,17 @@ body {
   justify-content: flex-end;
   
 }
-
+.button_edit,
+.button_delete {
+  width: 100px;
+  height: 24px;
+  background: #cbae9e;
+  border: 1px solid #aea9a9;
+  margin-top: 20px;
+  border-radius: 3px;
+  margin-right: 40px;
+  font-size: 20px;
+}
 .button_edit:hover,
 .button_delete:hover {
   background-color: #faead1;

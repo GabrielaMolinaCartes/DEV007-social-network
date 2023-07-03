@@ -31,7 +31,7 @@ export const Register = (onNavigate) => {
   logoImg.className = 'img_logo';
   logoImg.src = 'images/MonuTrip1.png';
   // Atributos de inputs y buttons
-  inputName.className = 'name_input';
+  inputName.className = 'input_login';
   inputName.id = 'nameId';
   inputName.type = 'text';
   inputName.required = true;
@@ -98,6 +98,7 @@ export const Register = (onNavigate) => {
   HomeDiv.appendChild(logoDiv);
   HomeDiv.appendChild(registerDiv);
   logoDiv.appendChild(logoImg);
+  registerDiv.appendChild(inputName);
   registerDiv.appendChild(inputEmail);
   registerDiv.appendChild(inputPassword);
   registerDiv.appendChild(buttonRegister);
