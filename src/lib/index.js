@@ -23,13 +23,22 @@ import { auth, db, provider } from '../firebase';
 
 // eslint-disable-next-line max-len
 export const crearUsuarioConCorreoYContraseña = (email, contraseña) => createUserWithEmailAndPassword(auth, email, contraseña);
-
+// función para obtener nombre de usuario logueado
+export const getLoggedUser = () => {
+  if (auth.currentUser) {
+    localStorage.setItem('displayName', auth.currentUser.email);
+  } else {
+    // eslint-disable-next-line no-console
+    console.log(null);
+  }
+};
 // eslint-disable-next-line max-len
 export const ingresarUsuarioConCorreoYContraseña = (email, contraseña) => signInWithEmailAndPassword(auth, email, contraseña);
 
 export const ingresarUsuarioConCuentaGoogle = () => signInWithPopup(auth, provider);
 
 // Crea y guarda el post
+export const getUser = () => auth.currentUser;
 
 export const crearPost = async (text) => {
   const createPost = await addDoc(collection(db, 'publicaciones'), {

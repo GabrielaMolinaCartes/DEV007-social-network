@@ -8,7 +8,7 @@ export const Register = (onNavigate) => {
   const HomeDiv = document.createElement('div');
   const logoDiv = document.createElement('div');
   const logoImg = document.createElement('img');
-  const registerDiv = document.createElement('div');
+  const registerDiv = document.createElement('form');
   // Variables de inputs y buttons
   const inputName = document.createElement('input');
   const inputEmail = document.createElement('input');

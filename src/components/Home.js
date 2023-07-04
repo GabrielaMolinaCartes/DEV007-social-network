@@ -8,8 +8,9 @@ import {
   removeLike,
   getPost,
   updatePost,
+  getUser,
+  getLoggedUser,
 } from '../lib/index.js';
-import { getUser, getLoggedUser } from '../firebase';
 
 export const Home = (onNavigate) => {
   // Variables de divs del Dom
@@ -91,22 +92,26 @@ export const Home = (onNavigate) => {
   }
   // Muestra los post, botonos editar, eliminar y likes en pantalla
   mostrarPost((querySnapshot) => {
+    const currentUser = getUser();
     let html = '';
     querySnapshot.forEach((doc) => {
-      const currentUser = getUser();
+      console.log(currentUser);
       const dataLikes = doc.data();
       const userLike = dataLikes.likes.includes(currentUser.uid);
       const imgLikeButton = userLike ? 'like.png' : 'dislike.png';
       const publicacion = doc.data();
       const fecha = publicacion.date.toDate().toLocaleString();
+      const validacion = currentUser.uid === publicacion.userId ? 'visible' : 'hidden';
       html += `
       <div class="container_feed_post" data-id="${doc.id}">
       <p class="content_date" >${fecha}</p>
       <p class="content_user">${publicacion.usuario}</p>
         <p class="content_post" id ="id-content-post">${publicacion.contenido}</p>
         <div class="button_feed_container">
+          <div style="visibility:${validacion}">
             <button class="button_edit" data-id="${doc.id}" >Editar</button>
             <button class="button_delete" data-id="${doc.id}" >Borrar</button>
+          </div>
           <div>
             <button class="like_btn" id="${doc.id}">
             <img src="images/${imgLikeButton}" class="like_heart" >${publicacion.likes.length}</img>

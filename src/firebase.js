@@ -25,12 +25,3 @@ export const db = getFirestore(app);
 // Autentifica el usuario
 // export const user = auth.currentUser;
 export const provider = new GoogleAuthProvider();
-export const getUser = () => auth.currentUser;
-// función para obtener nombre de usuario logueado
-export const getLoggedUser = () => {
-  if(auth.currentUser){
-    localStorage.setItem('displayName',  auth.currentUser.displayName);
-  } else {
-    console.log(null)
-  }
-}
