@@ -1,5 +1,3 @@
-// importamos la funcion que vamos a testear
-// import { async } from "regenerator-runtime"; ?????
 import {
   createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider,
 } from 'firebase/auth';
@@ -18,7 +16,7 @@ import {
   mostrarPost,
   addLike,
   removeLike,
-  // removeLike,
+  getUser,
 } from '../src/lib/index';
 import { auth } from '../src/firebase';
 
@@ -91,6 +89,13 @@ describe('ingresarUsuarioConCuentaGoogle', () => {
   });
 });
 
+// Aqui va getUser
+describe('getUser', () => {
+  it('Es una función', () => {
+    expect(typeof getUser).toBe('function');
+  });
+});
+
 describe('crearPost', () => {
   it('Es una función', () => {
     expect(typeof crearPost).toBe('function');
@@ -111,8 +116,8 @@ describe('mostrarPost', () => {
   it('Es una función', () => {
     expect(typeof mostrarPost).toBe('function');
   });
-  it('Deberia llamar a la funcion deleteDoc cuando es ejecutada', async () => {
-    await mostrarPost('ID');
+  it('Deberia llamar a la funcion onSnapshot cuando es ejecutada', async () => {
+    await mostrarPost('id');
     expect(onSnapshot).toHaveBeenCalled();
   });
 });
@@ -122,7 +127,7 @@ describe('borrarPost', () => {
     expect(typeof borrarPost).toBe('function');
   });
   it('Deberia llamar a la funcion deleteDoc cuando es ejecutada', async () => {
-    await borrarPost('ID');
+    await borrarPost('id');
     expect(deleteDoc).toHaveBeenCalled();
   });
 });

@@ -14,7 +14,7 @@ export const Register = (onNavigate) => {
   const inputEmail = document.createElement('input');
   const inputPassword = document.createElement('input');
   const buttonRegister = document.createElement('button');
-  const hrLine = document.createElement('hr'); /* intento de hacer la linea */
+  const hrLine = document.createElement('hr');
   // Variables para register con google
   const buttonRegisterGoogle = document.createElement('button');
   const logoGoogleSpan = document.createElement('span');
@@ -45,7 +45,7 @@ export const Register = (onNavigate) => {
   inputPassword.placeholder = ' Ingrese Contraseña';
   buttonRegister.classList.add('login_button');
   buttonRegister.textContent = 'Registrarse';
-  hrLine.className = 'line_hr'; /* linea class */
+  hrLine.className = 'line_hr';
   // Atributos de register con google
   buttonRegisterGoogle.className = 'google-button';
   logoGoogle.src = 'images/logoGoogle.svg';
@@ -61,7 +61,6 @@ export const Register = (onNavigate) => {
   buttonRegister.addEventListener('click', (e) => {
     e.preventDefault();
     crearUsuarioConCorreoYContraseña(
-      inputName.value,
       inputEmail.value,
       inputPassword.value,
     )

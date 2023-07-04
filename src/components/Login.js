@@ -14,7 +14,7 @@ export const Login = (onNavigate) => {
   const inputEmail = document.createElement('input');
   const inputPassword = document.createElement('input');
   const buttonLogin = document.createElement('button');
-  const hrLine = document.createElement('hr'); /* intento de hacer la linea */
+  const hrLine = document.createElement('hr');
   const titleRegister = document.createElement('p');
   const buttonRegister = document.createElement('button');
   // Variables para login con google
@@ -41,7 +41,7 @@ export const Login = (onNavigate) => {
   inputPassword.placeholder = ' Ingrese Contraseña';
   buttonLogin.classList.add('login_button');
   buttonLogin.textContent = 'Iniciar Sesión';
-  hrLine.className = 'line_hr'; /* linea class */
+  hrLine.className = 'line_hr';
   titleRegister.className = 'register_title';
   titleRegister.textContent = '¿No tienes cuenta?';
   buttonRegister.classList.add('register_button');

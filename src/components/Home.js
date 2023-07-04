@@ -1,4 +1,3 @@
-// import { async } from "regenerator-runtime";
 import {
   crearPost,
   mostrarPost,
@@ -9,8 +8,8 @@ import {
   getPost,
   updatePost,
   getUser,
-  getLoggedUser,
 } from '../lib/index.js';
+import { getLoggedUser } from '../firebase.js';
 
 export const Home = (onNavigate) => {
   // Variables de divs del Dom
@@ -25,7 +24,7 @@ export const Home = (onNavigate) => {
   const logoutImg = document.createElement('img');
   // Variables de formulario
   const titleWelcome = document.createElement('h2');
-  const postPublish = document.createElement('input');
+  const postPublish = document.createElement('textarea');
   const buttonPublish = document.createElement('button');
 
   // Atributos de variables DOM
@@ -52,13 +51,13 @@ export const Home = (onNavigate) => {
   postPublish.id = 'post-input';
   postPublish.className = 'post_input';
   postPublish.placeholder = ' Comparte tu experiencia....';
-  // postPublish.rows = "4"; // para que sean 4 lineas
+  postPublish.rows = '4'; // para que sean 4 lineas
   buttonPublish.className = 'publish_button';
   buttonPublish.textContent = 'Publicar';
 
   // Atributos de publicaciones creadas
   postFeedDiv.id = 'post-feed';
-
+  postFeedDiv.className = 'post_feed';
   // Event Listener de botones
 
   // Botón salir
@@ -95,7 +94,6 @@ export const Home = (onNavigate) => {
     const currentUser = getUser();
     let html = '';
     querySnapshot.forEach((doc) => {
-      console.log(currentUser);
       const dataLikes = doc.data();
       const userLike = dataLikes.likes.includes(currentUser.uid);
       const imgLikeButton = userLike ? 'like.png' : 'dislike.png';
@@ -162,9 +160,7 @@ export const Home = (onNavigate) => {
 
     buttonEdit.forEach((btn) => {
       btn.addEventListener('click', async (e) => {
-        // console.log(editMode);
         editMode = true;
-        // console.log(editMode);
         const postId = e.target.dataset.id; // ID de un post específico cuando se hace click
         postIdEditing = postId;
         const doc = await getPost(postId);

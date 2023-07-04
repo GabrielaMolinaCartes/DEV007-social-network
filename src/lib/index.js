@@ -18,20 +18,10 @@ import {
   query,
 } from 'firebase/firestore';
 import { auth, db, provider } from '../firebase';
-// serverTimestamp,
-// orderBy,
 
 // eslint-disable-next-line max-len
 export const crearUsuarioConCorreoYContraseña = (email, contraseña) => createUserWithEmailAndPassword(auth, email, contraseña);
-// función para obtener nombre de usuario logueado
-export const getLoggedUser = () => {
-  if (auth.currentUser) {
-    localStorage.setItem('displayName', auth.currentUser.email);
-  } else {
-    // eslint-disable-next-line no-console
-    console.log(null);
-  }
-};
+
 // eslint-disable-next-line max-len
 export const ingresarUsuarioConCorreoYContraseña = (email, contraseña) => signInWithEmailAndPassword(auth, email, contraseña);
 
@@ -44,7 +34,6 @@ export const crearPost = async (text) => {
   const createPost = await addDoc(collection(db, 'publicaciones'), {
     date: serverTimestamp(), // para poner las fechas ordenadas
     contenido: text,
-    // usuario: user,
     usuario: auth.currentUser.displayName, // Guarda el nombre del usuario en el post
     likes: [],
     userId: auth.currentUser.uid,
