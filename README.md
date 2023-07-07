@@ -79,7 +79,7 @@ Los tests unitarios deben cubrir un mínimo del 70% de statements, functions, li
 
 ### HTML
 
-- [ ] **Uso de HTML semántico**
+- [x] **Uso de HTML semántico**
 
   <details><summary>Links</summary><p>
 
