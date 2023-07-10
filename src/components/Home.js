@@ -10,6 +10,10 @@ import {
   getUser,
 } from '../lib/index.js';
 import { getLoggedUser } from '../firebase.js';
+import logo from '../images/MonuTrip1.png';
+import imgLogout from '../images/logout1.png';
+import imgLike from '../images/like.png';
+import imgDislike from '../images/dislike.png';
 
 export const Home = (onNavigate) => {
   // Variables de divs del Dom
@@ -37,12 +41,12 @@ export const Home = (onNavigate) => {
   postDiv.id = 'id-container-post';
   // Atributo botón salir
   logoutImg.className = 'img_logout';
-  logoutImg.src = 'images/logout1.png';
+  logoutImg.src = imgLogout;
   buttonLogout.className = 'logout_button';
 
   // Atributos de imagen del título
   logoImg.className = 'img_logo';
-  logoImg.src = 'images/MonuTrip1.png';
+  logoImg.src = logo;
   // Atributos de formulario
   titleWelcome.className = 'welcome_title';
   getLoggedUser();
@@ -96,7 +100,7 @@ export const Home = (onNavigate) => {
     querySnapshot.forEach((doc) => {
       const dataLikes = doc.data();
       const userLike = dataLikes.likes.includes(currentUser.uid);
-      const imgLikeButton = userLike ? 'like.png' : 'dislike.png';
+      const imgLikeButton = userLike ? imgLike : imgDislike;
       const publicacion = doc.data();
       const fecha = publicacion.date.toDate().toLocaleString();
       const validacion = currentUser.uid === publicacion.userId ? 'visible' : 'hidden';
@@ -112,7 +116,7 @@ export const Home = (onNavigate) => {
           </div>
           <div>
             <button class="like_btn" id="${doc.id}">
-            <img src="images/${imgLikeButton}" class="like_heart" >${publicacion.likes.length}</img>
+            <img src="${imgLikeButton}" class="like_heart" >${publicacion.likes.length}</img>
             </button>
           </div>
 

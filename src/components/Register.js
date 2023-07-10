@@ -2,6 +2,8 @@ import {
   crearUsuarioConCorreoYContraseña,
   ingresarUsuarioConCuentaGoogle,
 } from '../lib/index';
+import logo from '../images/MonuTrip1.png';
+import imgGoogle from '../images/logoGoogle.svg';
 
 export const Register = (onNavigate) => {
   // Variables de divs del DOM
@@ -29,7 +31,7 @@ export const Register = (onNavigate) => {
   registerDiv.className = 'container_login';
   // Atributos de imagen del título
   logoImg.className = 'img_logo';
-  logoImg.src = 'images/MonuTrip1.png';
+  logoImg.src = logo;
   // Atributos de inputs y buttons
   inputName.className = 'input_login';
   inputName.id = 'nameId';
@@ -48,7 +50,7 @@ export const Register = (onNavigate) => {
   hrLine.className = 'line_hr';
   // Atributos de register con google
   buttonRegisterGoogle.className = 'google-button';
-  logoGoogle.src = 'images/logoGoogle.svg';
+  logoGoogle.src = imgGoogle;
   logoGoogle.className = 'google-icon';
   logoGoogleSpan.className = 'google-button__icon';
   textGoogleSpan.className = 'google-button__text';
